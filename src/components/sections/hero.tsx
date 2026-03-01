@@ -10,9 +10,9 @@ import { motion } from 'framer-motion';
  */
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative min-h-[900px] w-full overflow-hidden flex flex-col justify-end pb-[120px]">
+    <section className="relative min-h-[900px] w-full overflow-hidden flex flex-col justify-end pb-[240px] md:pb-[120px]">
       {/* Background Layer: Mesh Gradient / Video */}
-      <div className="absolute top-[80px] inset-x-8 md:inset-x-16 bottom-0 z-0 overflow-hidden rounded-2xl">
+      <div className="absolute top-0 md:top-[80px] inset-x-0 md:inset-x-16 bottom-0 z-0 overflow-hidden md:rounded-2xl">
         <video
           autoPlay
           loop
@@ -30,12 +30,12 @@ const HeroSection: React.FC = () => {
         <div className="mesh-gradient absolute inset-0 mix-blend-overlay opacity-40"></div>
       </div>
 
-      <div className="container relative z-10">
+      <div className="container relative z-10 px-6 sm:px-8 md:px-12">
         <div className="max-w-[1280px] mx-auto">
           {/* Backed By Label */}
           <div className="mb-8 opacity-90">
             <span className="text-white font-display text-[14px] font-medium tracking-wider uppercase flex items-center gap-2">
-              Backed by <span className="italic font-bold">a16z / speedrun</span>
+              Backed by <span className="italic font-bold">Y Combinator / Techstars</span>
             </span>
           </div>
 
@@ -44,7 +44,7 @@ const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-white font-display text-[88px] leading-[1.05] font-normal tracking-[-0.02em] max-w-[800px] mb-12"
+            className="text-white font-display text-[42px] sm:text-[52px] md:text-[88px] leading-[1.05] font-normal tracking-[-0.02em] max-w-[800px] mb-8 md:mb-12"
           >
             Guaranteed<br />Appointments.
           </motion.h1>
@@ -54,7 +54,7 @@ const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-24"
+            className="mb-16 md:mb-24"
           >
             <a
               href="#demo"
@@ -64,13 +64,13 @@ const HeroSection: React.FC = () => {
             </a>
           </motion.div>
 
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-12">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-12">
             {/* Description Text */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.6 }}
-              className="text-white/90 font-display text-[20px] leading-[1.5] max-w-[560px]"
+              className="text-white/90 font-display text-[16px] md:text-[20px] leading-[1.5] md:max-w-[560px]"
             >
               Brittalent connects B2B companies with decision-makers who are ready to buy.
               We don't chase leads — we deliver booked calls, qualified pipelines, and

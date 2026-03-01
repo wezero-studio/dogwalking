@@ -68,9 +68,9 @@ const HowItWorks = () => {
 
     return (
         <section id="process" className="py-[16px] md:py-[24px] bg-[#F5F5F5]">
-            <div className="w-full max-w-[1600px] mx-auto px-4 md:px-8">
+            <div className="w-full max-w-[1600px] mx-auto px-6 md:px-8">
                 {/* Outer White Card Wrapper */}
-                <div className="bg-white rounded-3xl md:rounded-[24px] px-6 py-6 md:py-10 border border-[#E6E6E6] shadow-sm overflow-hidden">
+                <div className="bg-white rounded-3xl md:rounded-[24px] px-4 py-8 md:px-6 md:py-10 border border-[#E6E6E6] shadow-sm overflow-hidden">
                     {/* Header */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -95,7 +95,7 @@ const HowItWorks = () => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         <Tabs defaultValue={tabs[0].value} className="mt-4">
-                            <TabsList className="mx-auto w-fit flex flex-col items-center justify-center gap-4 sm:flex-row md:gap-6 mb-8">
+                            <TabsList className="mx-auto w-full max-w-[600px] flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-6 mb-8 h-auto bg-transparent">
                                 {tabs.map((tab) => (
                                     <TabsTrigger
                                         key={tab.value}
@@ -107,7 +107,7 @@ const HowItWorks = () => {
                                 ))}
                             </TabsList>
 
-                            <div className="mx-auto mt-4 w-full max-w-[1100px] rounded-3xl bg-[linear-gradient(135deg,#FFE5E5_0%,#F5F5F5_50%,#E5F0FF_100%)] p-6 lg:p-10">
+                            <div className="mx-auto mt-4 w-full max-w-[1100px] rounded-3xl bg-[linear-gradient(135deg,#FFE5E5_0%,#F5F5F5_50%,#E5F0FF_100%)] p-4 sm:p-6 lg:p-10">
                                 {tabs.map((tab) => (
                                     <TabsContent
                                         key={tab.value}

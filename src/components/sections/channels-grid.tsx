@@ -49,7 +49,7 @@ const ChannelsGrid = () => {
       <div className="w-full max-w-[1600px] mx-auto px-4 md:px-8">
 
         {/* Outer White Card Wrapper matching the other sections */}
-        <div className="bg-white rounded-3xl md:rounded-[24px] px-6 py-12 md:py-16 border border-[#E6E6E6] shadow-sm relative overflow-hidden">
+        <div className="bg-white rounded-3xl md:rounded-[24px] px-6 py-8 md:py-16 border border-[#E6E6E6] shadow-sm relative overflow-hidden">
           {/* Background Grid Pattern constrained to card */}
           <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
 
@@ -60,7 +60,7 @@ const ChannelsGrid = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8 }}
-              className="lg:col-span-12 xl:col-span-5 flex flex-col justify-center h-full min-h-[400px]"
+              className="lg:col-span-12 xl:col-span-5 flex flex-col justify-center h-full min-h-0 md:min-h-[400px]"
             >
               <Badge variant="outline" className="w-fit mb-6 text-[11px] font-mono uppercase tracking-[0.18em] border-[#D1D1D1] px-4 py-1.5 rounded-full text-[#7D7D7D] bg-white">
                 Omnichannel Approach
@@ -94,7 +94,7 @@ const ChannelsGrid = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="bg-[linear-gradient(135deg,#FFE5E5_0%,#F5F5F5_50%,#E5F0FF_100%)] rounded-[16px] p-8 border border-[#E6E6E6] shadow-sm flex flex-col group hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  className="bg-[linear-gradient(135deg,#FFE5E5_0%,#F5F5F5_50%,#E5F0FF_100%)] rounded-[16px] p-6 md:p-8 border border-[#E6E6E6] shadow-sm flex flex-col group hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <div className="flex gap-4 mb-6">
                     <div className="w-10 h-10 relative flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-lg shadow-inner border border-[#E6E6E6] group-hover:scale-110 transition-transform">

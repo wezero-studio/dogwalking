@@ -18,7 +18,7 @@ const Blueprint = () => {
                         We analyse your ideal customer profile, market positioning, and growth targets to build a conversion-ready pipeline strategy. This lays the critical foundation before a single message is sent.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="relative h-48 md:h-64 rounded-[16px] overflow-hidden border border-[#E6E6E6] shadow-sm">
+                        <div className="relative h-32 md:h-64 rounded-[16px] overflow-hidden border border-[#E6E6E6] shadow-sm">
                             <Image
                                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop"
                                 alt="Strategy dashboard and analytics"
@@ -26,7 +26,7 @@ const Blueprint = () => {
                                 className="object-cover"
                             />
                         </div>
-                        <div className="relative h-48 md:h-64 rounded-[16px] overflow-hidden border border-[#E6E6E6] shadow-sm">
+                        <div className="relative h-32 md:h-64 rounded-[16px] overflow-hidden border border-[#E6E6E6] shadow-sm">
                             <Image
                                 src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1470&auto=format&fit=crop"
                                 alt="Team collaborating on whiteboard"
@@ -49,7 +49,7 @@ const Blueprint = () => {
                         Multi-channel outreach begins: LinkedIn, email sequences, and intent-based targeting to reach decision makers exactly where their attention is focused.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="relative h-48 md:h-64 rounded-[16px] overflow-hidden border border-[#E6E6E6] shadow-sm">
+                        <div className="relative h-32 md:h-64 rounded-[16px] overflow-hidden border border-[#E6E6E6] shadow-sm">
                             <Image
                                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1415&auto=format&fit=crop"
                                 alt="Outreach campaign metrics"
@@ -57,7 +57,7 @@ const Blueprint = () => {
                                 className="object-cover"
                             />
                         </div>
-                        <div className="relative h-48 md:h-64 rounded-[16px] overflow-hidden border border-[#E6E6E6] shadow-sm">
+                        <div className="relative h-32 md:h-64 rounded-[16px] overflow-hidden border border-[#E6E6E6] shadow-sm">
                             <Image
                                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop"
                                 alt="Growth and conversion charts"
@@ -80,7 +80,7 @@ const Blueprint = () => {
                         Qualified appointments hit your calendar seamlessly. You close deals — we handle the rest. Everything from initial interest to the booked call is managed for you.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="relative h-48 md:h-64 rounded-[16px] overflow-hidden border border-[#E6E6E6] shadow-sm">
+                        <div className="relative h-32 md:h-64 rounded-[16px] overflow-hidden border border-[#E6E6E6] shadow-sm">
                             <Image
                                 src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?q=80&w=1470&auto=format&fit=crop"
                                 alt="Calendar with booked meetings"
@@ -88,7 +88,7 @@ const Blueprint = () => {
                                 className="object-cover"
                             />
                         </div>
-                        <div className="relative h-48 md:h-64 rounded-[16px] overflow-hidden border border-[#E6E6E6] shadow-sm">
+                        <div className="relative h-32 md:h-64 rounded-[16px] overflow-hidden border border-[#E6E6E6] shadow-sm">
                             <Image
                                 src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=1546&auto=format&fit=crop"
                                 alt="Successful handshake after meeting"
