@@ -1,14 +1,17 @@
+"use client";
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
+
   const sitemap = [
     {
-      title: 'Platform',
+      title: 'Capabilities',
       links: [
-        { label: 'Compose', href: '#' },
-        { label: 'Guard', href: '#' },
-        { label: 'Command', href: '#' },
+        { label: 'Omnichannel Outreach', href: '#' },
+        { label: 'Pipeline Strategy', href: '#' },
+        { label: 'Revenue Analytics', href: '#' },
       ],
     },
     {
@@ -45,31 +48,23 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-white border-t border-[#E6E6E6] pt-16 pb-12 px-6 sm:px-12 md:px-24">
+    <footer id="contact" className="w-full border-t border-[#E6E6E6] pt-16 pb-12 px-6 sm:px-12 md:px-24 bg-white">
       <div className="max-w-[1280px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
-          
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8"
+        >
+
           {/* Brand and Info Column */}
           <div className="lg:col-span-5 flex flex-col">
             <div className="mb-8">
-              <Image 
-                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a45fca8-c697-442c-bbdb-690bb996ae73-zerodrift-ai/assets/svgs/698272edf18ab399e2728f23_logo-black-3.svg" 
-                alt="Brittalent Logo" 
-                width={140} 
-                height={32}
-                className="h-8 w-auto"
-              />
+              <span className="text-[24px] font-bold text-[#1A1A1A] tracking-tighter uppercase font-display">BRITTALENT</span>
             </div>
 
             <div className="space-y-6">
-              <div>
-                <h4 className="text-[14px] font-medium text-[#1A1A1A] mb-3">Headquarters</h4>
-                <div className="text-[16px] text-[#7D7D7D] leading-[1.6]">
-                  <p>4 World Trade Center</p>
-                  <p>150 Greenwich Street, New York, NY 10007</p>
-                </div>
-              </div>
-
               <div>
                 <h4 className="text-[14px] font-medium text-[#1A1A1A] mb-3">Get in Touch</h4>
                 <a href="mailto:hello@brittalent.ai" className="text-[16px] text-[#7D7D7D] hover:text-[#1A1A1A] transition-colors">
@@ -85,7 +80,7 @@ const Footer = () => {
                   </div>
                 ))}
               </div>
-              
+
               <p className="text-[12px] text-[#7D7D7D] mt-2">
                 Your data never stored. <a href="#" className="underline hover:text-[#1A1A1A]">View Trust Center.</a>
               </p>
@@ -100,8 +95,8 @@ const Footer = () => {
                 <ul className="space-y-3">
                   {section.links.map((link) => (
                     <li key={link.label}>
-                      <a 
-                        href={link.href} 
+                      <a
+                        href={link.href}
                         className="text-[14px] text-[#7D7D7D] hover:text-[#1A1A1A] transition-colors"
                       >
                         {link.label}
@@ -112,14 +107,20 @@ const Footer = () => {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Bottom Bar Segment */}
-        <div className="mt-20 pt-8 border-t border-[#E6E6E6] flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-20 pt-8 border-t border-[#E6E6E6] flex flex-col md:flex-row justify-between items-start md:items-end gap-8"
+        >
           <div className="text-[14px] text-[#7D7D7D]">
             © 2026 Brittalent, Inc. All rights reserved.
           </div>
-          
+
           <div className="flex flex-col gap-2">
             {subFooterLinks.map((item) => (
               <div key={item.label} className="flex flex-row justify-between md:justify-end gap-12 text-[13px]">
@@ -130,7 +131,7 @@ const Footer = () => {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

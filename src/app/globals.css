@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Courier+Prime:wght@400;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -41,6 +41,7 @@
   --font-sans: "Inter", sans-serif;
   --font-display: "Inter", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
+  --font-typewriter: "Courier Prime", "Courier New", monospace;
 
   --radius-lg: 12px;
   --radius-md: 8px;
@@ -55,14 +56,17 @@
     from {
       height: 0;
     }
+
     to {
       height: var(--radix-accordion-content-height);
     }
   }
+
   @keyframes accordion-up {
     from {
       height: var(--radix-accordion-content-height);
     }
+
     to {
       height: 0;
     }
@@ -70,6 +74,7 @@
 }
 
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -151,6 +156,10 @@
     font-size: 14px;
   }
 
+  .font-typewriter {
+    font-family: var(--font-typewriter);
+  }
+
   .glass-card {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px);
@@ -166,8 +175,8 @@
 
   .mesh-gradient {
     background: radial-gradient(at 0% 0%, var(--color-hero-red) 0%, transparent 50%),
-                radial-gradient(at 100% 0%, var(--color-hero-glow) 0%, transparent 50%),
-                radial-gradient(at 50% 100%, #F5F5F5 0%, transparent 50%);
+      radial-gradient(at 100% 0%, var(--color-hero-glow) 0%, transparent 50%),
+      radial-gradient(at 50% 100%, #F5F5F5 0%, transparent 50%);
     background-color: var(--color-hero-red);
   }
 }
@@ -176,6 +185,7 @@
   * {
     border-color: var(--color-border);
   }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);

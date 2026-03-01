@@ -2,36 +2,43 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const LogoCloud = () => {
   const logos = [
     {
-      name: 'Microsoft',
-      src: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a45fca8-c697-442c-bbdb-690bb996ae73-zerodrift-ai/assets/images/6984e4b02ef70a3378fb669c_Microsoft_logo__2012_-6.avif',
-      width: 120,
-      height: 25,
-    },
-    {
-      name: 'Raymond James',
-      src: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a45fca8-c697-442c-bbdb-690bb996ae73-zerodrift-ai/assets/images/6984e4b0e31a385443d1dac3_Mask_20group-7.avif',
-      width: 130,
-      height: 30,
-    },
-    {
-      name: 'Goldman Sachs',
-      src: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a45fca8-c697-442c-bbdb-690bb996ae73-zerodrift-ai/assets/images/6984e4b0c6ee26f63cbd82a0_goldman-sachs-2-8.avif',
-      width: 110,
-      height: 35,
-    },
-    {
-      name: 'IBM',
-      src: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a45fca8-c697-442c-bbdb-690bb996ae73-zerodrift-ai/assets/svgs/69850876bf88c52505917c3e_ibm-4.svg',
-      width: 80,
+      name: 'Nike',
+      src: 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg',
+      width: 90,
       height: 32,
     },
     {
+      name: 'Adidas',
+      src: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg',
+      width: 100,
+      height: 32,
+    },
+    {
+      name: 'Microsoft',
+      src: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg',
+      width: 120,
+      height: 30,
+    },
+    {
+      name: 'Strava',
+      src: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Strava_Logo.svg',
+      width: 110,
+      height: 32,
+    },
+    {
+      name: 'Under Armour',
+      src: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Under_armour_logo.svg',
+      width: 120,
+      height: 30,
+    },
+    {
       name: 'Google',
-      src: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a45fca8-c697-442c-bbdb-690bb996ae73-zerodrift-ai/assets/images/6984e4b05ba88fef9658ee3f_Google_2015_logo-5.avif',
+      src: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
       width: 100,
       height: 32,
     },
@@ -43,13 +50,25 @@ const LogoCloud = () => {
   return (
     <section className="bg-[#F5F5F5] py-[80px] overflow-hidden">
       <div className="container mx-auto px-4 text-center mb-8">
-        <h2 className="font-mono text-[14px] text-[#7D7D7D] font-medium tracking-normal mb-10">
-          Built by AI leaders from
-        </h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="font-typewriter text-[18px] text-[#121212] font-medium tracking-normal mb-10"
+        >
+          Trusted by Industry Leaders
+        </motion.h2>
       </div>
 
-      <div className="relative w-full flex overflow-hidden group">
-        <div className="flex animate-[marquee_40s_linear_infinite] space-x-12 items-center min-w-full">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="relative w-full flex overflow-hidden group"
+      >
+        <div className="flex animate-[marquee_20s_linear_infinite] space-x-12 items-center min-w-full">
           {marqueeLogos.map((logo, index) => (
             <div
               key={`${logo.name}-${index}`}
@@ -66,7 +85,7 @@ const LogoCloud = () => {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       <style jsx global>{`
         @keyframes marquee {

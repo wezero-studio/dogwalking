@@ -4,11 +4,10 @@ import Navigation from "@/components/sections/navigation";
 import HeroSection from "@/components/sections/hero";
 import LogoCloud from "@/components/sections/logo-cloud";
 import FeaturesStack from "@/components/sections/features-stack";
-import ComplaintLook from "@/components/sections/complaint-look";
-import VideoDemo from "@/components/sections/video-demo";
+import HowItWorks from "@/components/sections/how-it-works";
+import Blueprint from "@/components/sections/blueprint";
 import ChannelsGrid from "@/components/sections/channels-grid";
-import ApiBlock from "@/components/sections/api-block";
-import Certifications from "@/components/sections/certifications";
+import Pricing from "@/components/sections/pricing";
 import CtaBanner from "@/components/sections/cta-banner";
 import Footer from "@/components/sections/footer";
 
@@ -20,11 +19,10 @@ export default function Home() {
         <HeroSection />
         <LogoCloud />
         <FeaturesStack />
-        <ComplaintLook />
-        <VideoDemo />
+        <HowItWorks />
+        <Blueprint />
         <ChannelsGrid />
-        <ApiBlock />
-        <Certifications />
+        <Pricing />
         <CtaBanner />
       </main>
       <Footer />
