@@ -11,7 +11,7 @@ const ProblemWeSolve = () => {
         
         {/* Eyebrow & Large Text */}
         <div className="flex flex-col gap-6 mb-16">
-          <div className="flex items-center gap-3 text-[13px] font-semibold tracking-[0.05em] uppercase text-[#1a1a1a] lg:-ml-6">
+          <div className="flex items-center gap-3 text-[13px] font-semibold tracking-[0.05em] uppercase text-[#1a1a1a] lg:-ml-2">
             <span className="w-1.5 h-1.5 bg-[#1e3a8a] rounded-full"></span>
             What We Do — The Problem We Solve
           </div>
@@ -20,7 +20,7 @@ const ProblemWeSolve = () => {
             as="h2"
             trigger="inView"
             text="Some markets have jobs. Some markets have the people to fill them. Rarely do the two meet."
-            className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] font-normal tracking-[-0.02em] max-w-[100%] lg:max-w-[95%] lg:-ml-6 font-display"
+            className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] font-normal tracking-[-0.02em] max-w-[100%] lg:max-w-[95%] lg:-ml-2 font-display"
           />
         </div>
 

@@ -47,7 +47,7 @@ const HeroSection: React.FC = () => {
 
       {/* Top: Headline, pinned left */}
       <div className="container relative z-10 px-6 sm:px-8 md:px-12">
-        <div className="max-w-[1280px] mx-auto -ml-2 md:-ml-10">
+        <div className="max-w-[1280px] mx-auto -ml-1 md:-ml-3">
           <AnimatedHeading
             as="h1"
             lines={["Can't Find the Talent You", "Need? We Source It."]}
@@ -60,7 +60,7 @@ const HeroSection: React.FC = () => {
 
       {/* Bottom: Description + CTA, pinned right */}
       <div className="container relative z-10 px-6 sm:px-8 md:px-12 mb-10 md:mb-14">
-        <div className="max-w-[1280px] mx-auto flex justify-end mr-0 md:-mr-10">
+        <div className="max-w-[1280px] mx-auto flex justify-end mr-0 md:-mr-3">
           <div className="flex flex-col items-start md:items-end gap-6 text-left md:text-right max-w-[540px]">
             <RevealText
               as="p"

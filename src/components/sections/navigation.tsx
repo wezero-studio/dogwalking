@@ -13,23 +13,27 @@ const Navigation = () => {
 
   useEffect(() => {
     let prevScrollY = window.scrollY;
+    let prevVisible = true;
+    let prevDark = true;
+    let ticking = false;
+    const darkSectionIds = ["hero-bg", "stats", "how-it-works", "contact"];
+    const navCenterY = 50; // approximate center of the navbar
 
-    const handleScroll = () => {
+    const measure = () => {
+      ticking = false;
       const currentScrollY = window.scrollY;
 
       // Hide on scroll down, show on scroll up (unless near top)
-      if (currentScrollY > prevScrollY && currentScrollY > 100 && !isMenuOpen) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
+      const nextVisible =
+        !(currentScrollY > prevScrollY && currentScrollY > 100 && !isMenuOpen);
       prevScrollY = currentScrollY;
+      if (nextVisible !== prevVisible) {
+        prevVisible = nextVisible;
+        setIsVisible(nextVisible);
+      }
 
       // Detect dark backgrounds under the navbar
-      const darkSectionIds = ["hero-bg", "stats", "how-it-works", "contact"];
       let currentlyOverDark = false;
-      const navCenterY = 50; // approximate center of the navbar
-
       for (const id of darkSectionIds) {
         const el = document.getElementById(id);
         if (el) {
@@ -40,11 +44,19 @@ const Navigation = () => {
           }
         }
       }
-
-      setIsDarkBackground(currentlyOverDark);
+      if (currentlyOverDark !== prevDark) {
+        prevDark = currentlyOverDark;
+        setIsDarkBackground(currentlyOverDark);
+      }
     };
 
-    handleScroll();
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(measure);
+    };
+
+    measure();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMenuOpen]);
