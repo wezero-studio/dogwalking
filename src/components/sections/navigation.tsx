@@ -76,10 +76,10 @@ const Navigation = () => {
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="container mx-auto px-6 md:px-8 max-w-[1280px]">
+      <div className="w-full max-w-[1280px] mx-auto px-8 md:px-12">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 -ml-2 md:-ml-4">
+          <Link href="/" className="flex-shrink-0">
             <span
               className={`text-[22px] font-bold tracking-tight font-display transition-colors ${
                 chromeIsLight ? "text-[#121212]" : "text-white"
@@ -90,7 +90,7 @@ const Navigation = () => {
           </Link>
 
           {/* CTA & Expandable Menu */}
-          <div className="flex items-center gap-3 -mr-2 md:-mr-4">
+          <div className="flex items-center gap-3">
             <a
               href="#demo"
               className={`px-5 py-2.5 rounded-[4px] text-[14px] font-medium tracking-tight transition-colors uppercase whitespace-nowrap ${

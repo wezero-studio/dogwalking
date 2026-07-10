@@ -39,7 +39,7 @@ const StatsSection = () => {
         <div className="absolute inset-0 bg-blue-950/40 mix-blend-multiply"></div>
       </div>
 
-      <div className="container relative z-10 mx-auto px-6 max-w-[1800px]">
+      <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6">
         {/* Optional Heading */}
         <div className="mb-12 text-left">
           <AnimatedHeading
