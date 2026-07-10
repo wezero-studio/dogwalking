@@ -2,13 +2,12 @@
 
 import Navigation from "@/components/sections/navigation";
 import HeroSection from "@/components/sections/hero";
-import LogoCloud from "@/components/sections/logo-cloud";
-import FeaturesStack from "@/components/sections/features-stack";
-import HowItWorks from "@/components/sections/how-it-works";
-import Blueprint from "@/components/sections/blueprint";
-import ChannelsGrid from "@/components/sections/channels-grid";
-import Pricing from "@/components/sections/pricing";
-import CtaBanner from "@/components/sections/cta-banner";
+import ProblemWeSolve from "@/components/sections/problem-we-solve";
+import StatsSection from "@/components/sections/stats-section";
+import WhatWeDoDark from "@/components/sections/what-we-do-dark";
+import OurReach from "@/components/sections/our-reach";
+import WhyBritTalent from "@/components/sections/why-brit-talent";
+import ContactSection from "@/components/sections/contact-section";
 import Footer from "@/components/sections/footer";
 
 export default function Home() {
@@ -17,13 +16,12 @@ export default function Home() {
       <Navigation />
       <main className="flex-grow pt-24 lg:pt-0">
         <HeroSection />
-        <LogoCloud />
-        <FeaturesStack />
-        <HowItWorks />
-        <Blueprint />
-        <ChannelsGrid />
-        <Pricing />
-        <CtaBanner />
+        <ProblemWeSolve />
+        <StatsSection />
+        <OurReach />
+        <WhatWeDoDark />
+        <WhyBritTalent />
+        <ContactSection />
       </main>
       <Footer />
     </div>

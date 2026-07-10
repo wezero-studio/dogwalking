@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+import AnimatedHeading from '@/components/ui/animated-heading';
+import RevealText from '@/components/ui/reveal-text';
 
 /**
  * Hero Section component for Brittalent.
@@ -10,15 +10,15 @@ import { motion } from 'framer-motion';
  */
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative min-h-[900px] w-full overflow-hidden flex flex-col justify-end pb-[240px] md:pb-[120px]">
+    <section id="hero" className="relative min-h-[900px] w-full overflow-hidden flex flex-col justify-between bg-white pt-32 pb-16 md:pt-40 md:pb-20">
       {/* Background Layer: Mesh Gradient / Video */}
-      <div className="absolute top-0 md:top-[80px] inset-x-0 md:inset-x-16 bottom-0 z-0 overflow-hidden md:rounded-2xl">
+      <div id="hero-bg" className="absolute top-2 left-2 right-2 bottom-2 md:top-4 md:left-4 md:right-4 md:bottom-4 lg:top-6 lg:left-6 lg:right-6 lg:bottom-6 z-0 overflow-hidden rounded-3xl">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover [filter:saturate(1.25)_contrast(1.08)]"
           poster="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a45fca8-c697-442c-bbdb-690bb996ae73-zerodrift-ai/assets/images/6981490c51c1e151d4cb9219_2F6983902256e7c4da0df2ff8-16.jpg"
         >
           <source
@@ -26,85 +26,61 @@ const HeroSection: React.FC = () => {
             type="video/mp4"
           />
         </video>
-        {/* Fallback Mesh Gradient if video fails */}
-        <div className="mesh-gradient absolute inset-0 mix-blend-overlay opacity-40"></div>
+        {/* Metallic blue duotone — oscillating dark/light stops create steel shimmer; mix-blend-color recolors the liquid video motion */}
+        <div
+          className="absolute inset-0 mix-blend-color"
+          style={{
+            background:
+              "linear-gradient(135deg, #071640 0%, #0d2d7a 12%, #4a7fc1 24%, #1a3f8f 36%, #6ba3d6 48%, #1c4da0 60%, #5598cc 72%, #0f2d72 84%, #3a6aad 100%)",
+          }}
+        ></div>
+        {/* Metallic shimmer highlight — soft silver-blue streaks via overlay */}
+        <div
+          className="absolute inset-0 mix-blend-overlay opacity-40"
+          style={{
+            background:
+              "linear-gradient(120deg, transparent 0%, transparent 30%, rgba(180,210,255,0.6) 45%, transparent 60%, rgba(140,185,255,0.3) 75%, transparent 100%)",
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-[#071640]/25 mix-blend-multiply"></div>
       </div>
 
+      {/* Top: Headline, pinned left */}
       <div className="container relative z-10 px-6 sm:px-8 md:px-12">
-        <div className="max-w-[1280px] mx-auto">
-          {/* Backed By Label */}
-          <div className="mb-8 opacity-90">
-            <span className="text-white font-display text-[14px] font-medium tracking-wider uppercase flex items-center gap-2">
-              Backed by <span className="italic font-bold">Y Combinator / Techstars</span>
-            </span>
-          </div>
-
-          {/* Main Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-white font-display text-[42px] sm:text-[52px] md:text-[88px] leading-[1.05] font-normal tracking-[-0.02em] max-w-[800px] mb-8 md:mb-12"
-          >
-            Guaranteed<br />Appointments.
-          </motion.h1>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-16 md:mb-24"
-          >
-            <a
-              href="#demo"
-              className="inline-flex items-center justify-center bg-white text-[#121212] font-display text-[14px] font-medium py-4 px-8 rounded-[4px] tracking-wider transition-transform hover:scale-105 active:scale-95 uppercase"
-            >
-              Book a call
-            </a>
-          </motion.div>
-
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-12">
-            {/* Description Text */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.6 }}
-              className="text-white/90 font-display text-[16px] md:text-[20px] leading-[1.5] md:max-w-[560px]"
-            >
-              Brittalent connects B2B companies with decision-makers who are ready to buy.
-              We don't chase leads — we deliver booked calls, qualified pipelines, and
-              predictable revenue growth.
-            </motion.p>
-
-            {/* Certification / Compliance Logos */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex items-center gap-6 pb-2"
-            >
-              <div className="flex flex-col items-center">
-                <div className="w-[64px] h-[64px] border border-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                  <span className="text-white text-[10px] font-mono leading-none text-center">AICPA</span>
-                </div>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="w-[64px] h-[64px] border border-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                  <span className="text-white text-[10px] font-mono leading-none text-center">ISO 27001</span>
-                </div>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="w-[64px] h-[64px] border border-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                  <span className="text-white text-[10px] font-mono leading-none text-center">GDPR</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+        <div className="max-w-[1280px] mx-auto -ml-2 md:-ml-10">
+          <AnimatedHeading
+            as="h1"
+            lines={["Can't Find the Talent You", "Need? We Source It."]}
+            trigger="mount"
+            delay={0.2}
+            className="text-white font-display text-[22px] sm:text-[40px] md:text-[72px] leading-[1.1] font-normal tracking-[-0.02em]"
+          />
         </div>
       </div>
 
+      {/* Bottom: Description + CTA, pinned right */}
+      <div className="container relative z-10 px-6 sm:px-8 md:px-12 mb-10 md:mb-14">
+        <div className="max-w-[1280px] mx-auto flex justify-end mr-0 md:-mr-10">
+          <div className="flex flex-col items-start md:items-end gap-6 text-left md:text-right max-w-[540px]">
+            <RevealText
+              as="p"
+              trigger="mount"
+              delay={0.5}
+              className="text-white/90 font-display text-[16px] md:text-[18px] leading-[1.6]"
+            >
+              Brit Talent finds, sponsors, and places skilled international talent into UK
+              and European companies facing hiring gaps they can&apos;t fill locally.
+            </RevealText>
 
+            <a
+              href="#demo"
+              className="inline-flex items-center justify-center gap-2 bg-white text-[#121212] font-display text-[14px] font-medium py-4 px-8 rounded-[4px] tracking-wider transition-transform hover:scale-105 active:scale-95 uppercase"
+            >
+              Get in Touch <span aria-hidden>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

@@ -1,103 +1,137 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { Plus, X } from "lucide-react";
 
 
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isDarkBackground, setIsDarkBackground] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
+    let prevScrollY = window.scrollY;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+
+      // Hide on scroll down, show on scroll up (unless near top)
+      if (currentScrollY > prevScrollY && currentScrollY > 100 && !isMenuOpen) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      prevScrollY = currentScrollY;
+
+      // Detect dark backgrounds under the navbar
+      const darkSectionIds = ["hero-bg", "stats", "how-it-works", "contact"];
+      let currentlyOverDark = false;
+      const navCenterY = 50; // approximate center of the navbar
+
+      for (const id of darkSectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= navCenterY && rect.bottom >= navCenterY) {
+            currentlyOverDark = true;
+            break;
+          }
+        }
+      }
+
+      setIsDarkBackground(currentlyOverDark);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMenuOpen]);
 
   const navItems = [
-    { name: "Process", href: "#process" },
-    { name: "Blueprint", href: "#blueprint" },
-    { name: "Plans", href: "#pricing" },
+    { name: "What We Do", href: "#what-we-do" },
+    { name: "How It Works", href: "#how-it-works" },
+    { name: "Where We Source", href: "#where-we-source" },
     { name: "Contact", href: "#contact" },
   ];
 
+  const chromeIsLight = !isDarkBackground;
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 ${isScrolled
-        ? "bg-white/80 backdrop-blur-xl border-b border-[#E6E6E6] py-3"
-        : "bg-transparent py-6"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-[1000] bg-transparent py-7 md:py-9 transition-transform duration-300 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
     >
       <div className="container mx-auto px-6 md:px-8 max-w-[1280px]">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex-shrink-0">
-            <span className="text-[22px] font-bold tracking-tight text-[#121212] font-typewriter">
-              brittalent
-            </span>
-          </a>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-x-8">
-            {navItems.map((item) => (
-              <div key={item.name} className="group relative">
-                <a href={item.href} className="flex items-center gap-1 text-[15px] font-medium text-[#1A1A1A] hover:text-[#7D7D7D] transition-colors py-2">
-                  {item.name}
-                </a>
-              </div>
-            ))}
-          </nav>
-
-          {/* CTA & Mobile Toggle */}
-          <div className="flex items-center gap-4">
-            <div className="hidden lg:flex items-center">
-              <a
-                href="#demo"
-                className="bg-[#121212] text-white px-5 py-2.5 rounded-[4px] text-[14px] font-medium tracking-tight hover:bg-black transition-colors uppercase whitespace-nowrap"
-              >
-                Book a call
-              </a>
-            </div>
-            {/* Mobile Menu Toggle */}
-            <button
-              className="lg:hidden p-2 text-[#1A1A1A] -mr-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          <Link href="/" className="flex-shrink-0 -ml-4 md:-ml-16">
+            <span
+              className={`text-[22px] font-bold tracking-tight font-display transition-colors ${
+                chromeIsLight ? "text-[#121212]" : "text-white"
+              }`}
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+              Brit Talent
+            </span>
+          </Link>
+
+          {/* CTA & Expandable Menu */}
+          <div className="flex items-center gap-3 -mr-4 md:-mr-16">
+            <a
+              href="#demo"
+              className={`px-5 py-2.5 rounded-[4px] text-[14px] font-medium tracking-tight transition-colors uppercase whitespace-nowrap ${
+                chromeIsLight
+                  ? "bg-[#121212] text-white hover:bg-black"
+                  : "bg-white text-[#121212] hover:bg-white/90"
+              }`}
+            >
+              Talk to Us
+            </a>
+
+            <div className="relative">
+              <button
+                onClick={() => setIsMenuOpen((v) => !v)}
+                className={`group flex items-center gap-2 rounded-[4px] px-5 py-2.5 text-[14px] font-medium tracking-tight border transition-colors ${
+                  chromeIsLight
+                    ? "bg-[#121212]/5 border-[#121212]/10 text-[#121212] hover:bg-[#121212]/10"
+                    : "bg-white/10 border-white/20 text-white backdrop-blur-sm hover:bg-white/20"
+                }`}
+              >
+                {isMenuOpen ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                <span>{isMenuOpen ? "Close" : "Menu"}</span>
+              </button>
+
+              {/* Expanded Panel */}
+              {isMenuOpen && (
+                <div
+                  className={`absolute top-full right-0 mt-2 w-[220px] rounded-[4px] border py-6 px-6 flex flex-col gap-4 transition-colors ${
+                    chromeIsLight
+                      ? "bg-white border-[#E6E6E6] shadow-lg"
+                      : "bg-[#121212] border-white/10 shadow-lg backdrop-blur-md"
+                  }`}
+                >
+                  {navItems.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className={`text-[15px] font-medium transition-colors ${
+                        chromeIsLight
+                          ? "text-[#1A1A1A] hover:text-[#7D7D7D]"
+                          : "text-white hover:text-white/70"
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Mobile Dropdown Menu */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-[#E6E6E6] shadow-lg py-4 px-6 flex flex-col gap-4">
-          <nav className="flex flex-col gap-4">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-[16px] font-medium text-[#1A1A1A] hover:text-[#7D7D7D] py-2 border-b border-[#F5F5F5]"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
-          </nav>
-          <div className="pt-2">
-            <a
-              href="#demo"
-              className="flex items-center justify-center bg-[#121212] text-white px-5 py-3 rounded-[4px] text-[14px] font-medium tracking-tight uppercase w-full"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Book a call
-            </a>
-          </div>
-        </div>
-      )}
     </header>
   );
 };

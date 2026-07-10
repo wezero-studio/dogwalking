@@ -3,6 +3,8 @@ import "./globals.css";
 import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
+import SmoothScroll from "@/components/smooth-scroll";
+import AppReadyProvider from "@/components/app-ready-provider";
 
 export const metadata: Metadata = {
   title: "Brittalent - The AI Compliance Firewall",
@@ -28,7 +30,9 @@ export default function RootLayout({
           data-debug="true"
             data-custom-data='{"appName": "Brittalent", "version": "1.0.0", "greeting": "hi"}'
           />
-          {children}
+          <AppReadyProvider>
+            <SmoothScroll>{children}</SmoothScroll>
+          </AppReadyProvider>
           <VisualEditsMessenger />
       </body>
     </html>
