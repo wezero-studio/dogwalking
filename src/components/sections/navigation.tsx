@@ -76,7 +76,7 @@ const Navigation = () => {
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="w-full max-w-[1280px] mx-auto px-8 md:px-12">
+      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
