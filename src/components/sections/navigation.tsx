@@ -67,7 +67,7 @@ const Navigation = () => {
       <div className="container mx-auto px-6 md:px-8 max-w-[1280px]">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 -ml-4 md:-ml-16">
+          <Link href="/" className="flex-shrink-0 -ml-2 md:-ml-4">
             <span
               className={`text-[22px] font-bold tracking-tight font-display transition-colors ${
                 chromeIsLight ? "text-[#121212]" : "text-white"
@@ -78,7 +78,7 @@ const Navigation = () => {
           </Link>
 
           {/* CTA & Expandable Menu */}
-          <div className="flex items-center gap-3 -mr-4 md:-mr-16">
+          <div className="flex items-center gap-3 -mr-2 md:-mr-4">
             <a
               href="#demo"
               className={`px-5 py-2.5 rounded-[4px] text-[14px] font-medium tracking-tight transition-colors uppercase whitespace-nowrap ${
