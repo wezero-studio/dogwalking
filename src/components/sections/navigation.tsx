@@ -2,61 +2,26 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Plus, X } from "lucide-react";
-
-
+import { X } from "lucide-react";
 
 const Navigation = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const [isDarkBackground, setIsDarkBackground] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     let prevScrollY = window.scrollY;
-    let prevVisible = true;
-    let prevDark = true;
-    let ticking = false;
-    const darkSectionIds = ["hero-bg", "stats", "how-it-works", "contact"];
-    const navCenterY = 50; // approximate center of the navbar
-
-    const measure = () => {
-      ticking = false;
-      const currentScrollY = window.scrollY;
-
-      // Hide on scroll down, show on scroll up (unless near top)
-      const nextVisible =
-        !(currentScrollY > prevScrollY && currentScrollY > 100 && !isMenuOpen);
-      prevScrollY = currentScrollY;
-      if (nextVisible !== prevVisible) {
-        prevVisible = nextVisible;
-        setIsVisible(nextVisible);
-      }
-
-      // Detect dark backgrounds under the navbar
-      let currentlyOverDark = false;
-      for (const id of darkSectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= navCenterY && rect.bottom >= navCenterY) {
-            currentlyOverDark = true;
-            break;
-          }
-        }
-      }
-      if (currentlyOverDark !== prevDark) {
-        prevDark = currentlyOverDark;
-        setIsDarkBackground(currentlyOverDark);
-      }
-    };
-
+    
     const handleScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(measure);
+      const currentScrollY = window.scrollY;
+      // Hide on scroll down, show on scroll up
+      const nextVisible = !(currentScrollY > prevScrollY && currentScrollY > 100 && !isMenuOpen);
+      prevScrollY = currentScrollY;
+      
+      setIsVisible(nextVisible);
+      setIsScrolled(currentScrollY > 50);
     };
 
-    measure();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMenuOpen]);
@@ -68,71 +33,60 @@ const Navigation = () => {
     { name: "Contact", href: "#contact" },
   ];
 
-  const chromeIsLight = !isDarkBackground;
-
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[1000] bg-transparent py-7 md:py-9 transition-transform duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[1000] py-4 transition-all duration-300 pointer-events-none ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-6">
+      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 pointer-events-auto">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
-            <span
-              className={`text-[22px] font-bold tracking-tight font-display transition-colors ${
-                chromeIsLight ? "text-[#121212]" : "text-white"
-              }`}
-            >
-              Brit Talent
-            </span>
-          </Link>
+          
+          {/* Left / Empty to balance */}
+          <div className="w-1/3 flex items-center">
+            <Link href="/" className="flex items-center flex-shrink-0">
+              <span
+                className="text-[28px] md:text-[36px] font-bold tracking-tight uppercase text-[#3d3024] leading-none"
+                style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
+              >
+                D D
+              </span>
+            </Link>
+          </div>
 
-          {/* CTA & Expandable Menu */}
-          <div className="flex items-center gap-3">
+          {/* Center Logo space (now empty) */}
+          <div className="w-1/3 flex justify-center flex-shrink-0">
+          </div>
+
+          {/* Right side: Circular buttons */}
+          <div className="w-1/3 flex items-center justify-end gap-2 md:gap-4">
+            
             <a
-              href="#demo"
-              className={`px-5 py-2.5 rounded-[4px] text-[14px] font-medium tracking-tight transition-colors uppercase whitespace-nowrap ${
-                chromeIsLight
-                  ? "bg-[#121212] text-white hover:bg-black"
-                  : "bg-white text-[#121212] hover:bg-white/90"
-              }`}
+              href="#contact"
+              className="group flex flex-col items-center justify-center w-[45px] h-[45px] md:w-[60px] md:h-[60px] rounded-full border border-[#3d3024] text-[#3d3024] hover:bg-[#3d3024] hover:text-[#A3D8FF] transition-colors"
             >
-              Talk to Us
+               <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-widest">Talk</span>
             </a>
 
             <div className="relative">
               <button
                 onClick={() => setIsMenuOpen((v) => !v)}
-                className={`group flex items-center gap-2 rounded-[4px] px-5 py-2.5 text-[14px] font-medium tracking-tight border transition-colors ${
-                  chromeIsLight
-                    ? "bg-[#121212]/5 border-[#121212]/10 text-[#121212] hover:bg-[#121212]/10"
-                    : "bg-white/10 border-white/20 text-white backdrop-blur-sm hover:bg-white/20"
-                }`}
+                className="group flex flex-col items-center justify-center w-[45px] h-[45px] md:w-[60px] md:h-[60px] rounded-full border border-[#3d3024] text-[#3d3024] hover:bg-[#3d3024] hover:text-[#A3D8FF] transition-colors bg-transparent"
               >
-                {isMenuOpen ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                <span>{isMenuOpen ? "Close" : "Menu"}</span>
+                {isMenuOpen ? <X className="w-4 h-4 md:w-5 md:h-5 mb-0.5" /> : <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-widest">Menu</span>}
               </button>
 
               {/* Expanded Panel */}
               {isMenuOpen && (
                 <div
-                  className={`absolute top-full right-0 mt-2 w-[220px] rounded-[4px] border py-6 px-6 flex flex-col gap-4 transition-colors ${
-                    chromeIsLight
-                      ? "bg-white border-[#E6E6E6] shadow-lg"
-                      : "bg-[#121212] border-white/10 shadow-lg backdrop-blur-md"
-                  }`}
+                  className="absolute top-full right-0 mt-4 w-[240px] rounded-2xl border-[3px] border-[#3d3024] py-6 px-6 flex flex-col gap-4 transition-colors bg-[#F8F9FA] shadow-[8px_8px_0_#3d3024]"
                 >
                   {navItems.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
-                      className={`text-[15px] font-medium transition-colors ${
-                        chromeIsLight
-                          ? "text-[#1A1A1A] hover:text-[#7D7D7D]"
-                          : "text-white hover:text-white/70"
-                      }`}
+                      className="text-[20px] font-bold uppercase tracking-wide text-[#3d3024] hover:text-[#F87171] transition-colors"
+                      style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.name}
@@ -147,6 +101,5 @@ const Navigation = () => {
     </header>
   );
 };
-
 
 export default Navigation;

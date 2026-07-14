@@ -7,12 +7,20 @@ import { useAppReady } from "@/components/app-ready-context";
 interface RevealTextProps {
   children: React.ReactNode;
   className?: string;
-  as?: "div" | "p";
+  style?: React.CSSProperties;
+  as?: "div" | "p" | "blockquote" | "cite";
   delay?: number;
   duration?: number;
   /** "mount" plays immediately (above-the-fold use, e.g. hero); "inView" plays once scrolled into view. */
   trigger?: "mount" | "inView";
 }
+
+const MOTION_TAGS = {
+  div: motion.div,
+  p: motion.p,
+  blockquote: motion.blockquote,
+  cite: motion.cite,
+} as const;
 
 /**
  * Wraps block content (a paragraph, a CTA, a card body) in a clipped mask and
@@ -23,6 +31,7 @@ interface RevealTextProps {
 const RevealText: React.FC<RevealTextProps> = ({
   children,
   className = "",
+  style,
   as = "div",
   delay = 0,
   duration = 0.7,
@@ -32,7 +41,7 @@ const RevealText: React.FC<RevealTextProps> = ({
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const appReady = useAppReady();
   const shouldAnimate = trigger === "mount" ? appReady : isInView;
-  const MotionTag = as === "p" ? motion.p : motion.div;
+  const MotionTag = MOTION_TAGS[as];
 
   return (
     <div ref={ref} className="overflow-hidden">
@@ -41,6 +50,7 @@ const RevealText: React.FC<RevealTextProps> = ({
         animate={{ y: shouldAnimate ? "0%" : "100%" }}
         transition={{ duration, delay, ease: [0.16, 1, 0.3, 1] }}
         className={className}
+        style={style}
       >
         {children}
       </MotionTag>

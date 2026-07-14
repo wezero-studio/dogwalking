@@ -6,69 +6,77 @@ import RevealText from "@/components/ui/reveal-text";
 
 const columns = [
   {
-    number: "01",
-    heading: "We Specialise in the Hard-to-Fill",
-    body: "We don't compete for the same local talent pool everyone else is fishing in. We go where the skills actually are.",
+    heading: "Trusted, Vetted Walkers Only",
+    body: "Every walker on our team is DBS checked, insured, and trained in pet first aid. Your pup is always in safe hands.",
+    color: "#F9A8D4",
+    rotation: "rotate-[2deg]",
   },
   {
-    number: "02",
-    heading: "We Handle the Whole Process",
-    body: "Sourcing, vetting, sponsorship, relocation — one point of contact, not five different agencies.",
+    heading: "Flexible Schedules, Zero Hassle",
+    body: "Book daily, weekly, or on-demand. We work around your life — not the other way around.",
+    color: "#FCD34D",
+    rotation: "-rotate-[2deg]",
   },
   {
-    number: "03",
-    heading: "Compliant, End-to-End Sponsorship",
-    body: "We manage UK sponsorship properly, so you get a hire who's set up to work legally and stay long-term.",
+    heading: "Real-Time Updates After Every Walk",
+    body: "We send a photo and a quick note after each outing, so you always know your dog had a great time.",
+    color: "#F8F9FA",
+    rotation: "rotate-[1.5deg]",
   },
 ];
 
 const WhyBritTalent = () => {
   return (
-    <section className="bg-white text-[#0f172a] py-24 font-sans">
-      <div className="w-full mx-auto px-6 md:px-16 lg:px-24">
-
+    <section className="bg-[#A3D8FF] pt-24 pb-32 font-sans overflow-hidden">
+      {/* Heading placed normally at the top */}
+      <div className="w-full mx-auto px-6 md:px-16 lg:px-24 mb-16 max-w-[1400px]">
         {/* Eyebrow */}
-        <div className="flex items-center gap-2 mb-10 text-[13px] font-semibold tracking-[0.06em] uppercase text-[#1e3a8a]">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a]"></span>
-          Why Brit Talent
+        <div className="flex items-center gap-3 text-[13px] font-bold tracking-[0.08em] uppercase text-[#3d3024] mb-4">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#3d3024]"></span>
+          Why Choose Us
         </div>
 
         {/* Section heading */}
-        <div className="mb-14">
-          <AnimatedHeading
-            as="h2"
-            trigger="inView"
-            text="Why Companies Work With Us"
-            className="text-[40px] md:text-[52px] lg:text-[60px] font-normal leading-[1.1] tracking-[-0.02em] font-display"
-          />
-        </div>
+        <AnimatedHeading
+          as="h2"
+          text="Why Dog Owners Love Us"
+          trigger="inView"
+          className="text-[#3d3024] text-[48px] sm:text-[60px] md:text-[80px] lg:text-[100px] leading-[0.9] font-bold uppercase m-0 tracking-wide"
+          style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
+        />
+      </div>
 
-        {/* Three-column card grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {columns.map((col) => (
-            <div
-              key={col.number}
-              className="group flex flex-col justify-between bg-[#f1f5f9] rounded-[8px] p-8 md:p-10 min-h-[500px] hover:bg-[#e9eef4] transition-colors duration-300"
-            >
-              {/* Big serif number at top — like ref */}
-              <div className="text-[100px] md:text-[130px] font-serif leading-none tracking-tight text-[#0f172a] -mt-4 md:-mt-6 mb-6">
-                {col.number}
-              </div>
+      {/* Horizontal overlapping tilted bars */}
+      <div className="flex flex-col relative w-[110vw] -ml-[5vw]">
+        {columns.map((col, i) => (
+          <div
+            key={i}
+            className={`relative py-7 md:py-9 flex items-center justify-center transition-transform hover:scale-[1.01] duration-300 border-y-[2px] border-[#3d3024] ${col.rotation}`}
+            style={{ 
+              backgroundColor: col.color, 
+              zIndex: i * 10 + 10,
+              marginTop: i === 0 ? "0" : "-0.5vw",
+            }}
+          >
+            {/* Inner line outlines (top and bottom) */}
+            <div className="absolute top-[4px] md:top-[6px] left-0 right-0 h-[1.5px] md:h-[2px] bg-[#3d3024] opacity-80"></div>
+            <div className="absolute bottom-[4px] md:bottom-[6px] left-0 right-0 h-[1.5px] md:h-[2px] bg-[#3d3024] opacity-80"></div>
 
-              {/* Heading + body pinned to bottom */}
-              <div className="flex flex-col gap-4">
-                <div className="h-px w-full bg-[#cbd5e1]" />
-                <h3 className="text-[20px] md:text-[22px] font-medium leading-[1.3] text-[#0f172a]">
+            <RevealText as="div" trigger="inView" delay={i * 0.1}>
+              <div className="max-w-[1200px] w-full mx-auto px-8 md:px-16 text-center flex flex-col items-center">
+                <h3 
+                  className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] font-bold uppercase leading-[1.0] tracking-wide m-0"
+                  style={{ color: "#3d3024", fontFamily: "'Luckiest Guy', sans-serif" }}
+                >
                   {col.heading}
                 </h3>
-                <RevealText as="p" className="text-[15px] leading-[1.7] text-[#475569]">
+                <p className="text-[14px] sm:text-[16px] md:text-[18px] font-medium mt-1 md:mt-2 max-w-3xl leading-[1.5]" style={{ color: "#3d3024" }}>
                   {col.body}
-                </RevealText>
+                </p>
               </div>
-            </div>
-          ))}
-        </div>
-
+            </RevealText>
+          </div>
+        ))}
       </div>
     </section>
   );

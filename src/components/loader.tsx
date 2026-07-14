@@ -52,9 +52,9 @@ const Loader = ({ onReveal }: LoaderProps) => {
           initial={{ y: 0 }}
           exit={{ y: "-100%" }}
           transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[10000] bg-white flex flex-col items-center justify-center"
+          className="fixed inset-0 z-[10000] bg-[#A3D8FF] flex flex-col items-center justify-center"
         >
-          <div className="relative overflow-hidden h-[70px] md:h-[110px] w-[200px] flex items-center justify-center">
+          <div className="relative overflow-hidden h-[90px] md:h-[140px] w-[320px] md:w-[480px] flex items-center justify-center">
             <AnimatePresence>
               <motion.span
                 key={progress}
@@ -62,16 +62,17 @@ const Loader = ({ onReveal }: LoaderProps) => {
                 animate={{ y: "0%" }}
                 exit={{ y: "-110%" }}
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 flex items-center justify-center font-display text-[64px] md:text-[96px] font-normal tracking-[-0.02em] text-[#121212] tabular-nums"
+                className="absolute inset-0 flex items-center justify-center text-[80px] md:text-[140px] font-bold text-[#3d3024] tabular-nums leading-none"
+                style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
               >
-                {progress}
+                {progress}%
               </motion.span>
             </AnimatePresence>
           </div>
 
-          <div className="fixed bottom-0 left-0 right-0 w-full h-[3px] bg-[#e6e6e6] overflow-hidden">
+          <div className="fixed bottom-0 left-0 right-0 w-full h-[8px] bg-white/40 overflow-hidden">
             <motion.div
-              className="h-full bg-[#121212]"
+              className="h-full bg-[#3d3024]"
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             />

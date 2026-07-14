@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Courier+Prime:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Courier+Prime:wght@400;700&family=Luckiest+Guy&family=Chewy&family=Titan+One&family=Fredoka:wght@700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -107,7 +107,6 @@
   }
 
   html {
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -180,5 +179,13 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+  }
+
+  .ticket-card {
+    border: 35px solid transparent;
+    border-image-source: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><path fill='%23A3D8FF' d='M 30 5 L 90 5 A 25 25 0 0 0 115 30 L 115 90 A 25 25 0 0 0 90 115 L 30 115 A 25 25 0 0 0 5 90 L 5 30 A 25 25 0 0 0 30 5 Z'/><path id='b' fill='none' stroke='%232a5a00' stroke-width='3' d='M 30 5 L 90 5 A 25 25 0 0 0 115 30 L 115 90 A 25 25 0 0 0 90 115 L 30 115 A 25 25 0 0 0 5 90 L 5 30 A 25 25 0 0 0 30 5 Z'/><use href='%23b' transform='translate(60,60) scale(0.91) translate(-60,-60)' stroke-width='2'/><use href='%23b' transform='translate(60,60) scale(0.86) translate(-60,-60)' stroke-width='1'/></svg>");
+    border-image-slice: 35 fill;
+    border-image-repeat: stretch;
+    background-color: transparent !important;
   }
 }

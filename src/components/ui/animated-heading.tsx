@@ -10,6 +10,7 @@ interface AnimatedHeadingProps {
   /** Hard line breaks — each entry renders as its own non-wrapping line. */
   lines?: string[];
   className?: string;
+  style?: React.CSSProperties;
   as?: "h1" | "h2" | "h3" | "p" | "span";
   delay?: number;
   stagger?: number;
@@ -31,6 +32,7 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({
   text,
   lines,
   className = "",
+  style,
   as = "h2",
   delay = 0,
   stagger = 0.018,
@@ -61,8 +63,8 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({
           >
             <motion.span
               className="inline-block"
-              initial={{ y: "110%" }}
-              animate={{ y: shouldAnimate ? "0%" : "110%" }}
+              initial={{ y: "-110%" }}
+              animate={{ y: shouldAnimate ? "0%" : "-110%" }}
               transition={{
                 duration: 0.6,
                 delay: delay + i * stagger,
@@ -78,7 +80,7 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({
   );
 
   return (
-    <Tag ref={ref} className={className} aria-label={fullText}>
+    <Tag ref={ref} className={className} style={style} aria-label={fullText}>
       {resolvedLines.map((line, li) => (
         <span key={li} className={lines ? "block whitespace-nowrap" : undefined}>
           {line.split(" ").map((word, wi, arr) => (

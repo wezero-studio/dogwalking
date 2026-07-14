@@ -7,8 +7,8 @@ import SmoothScroll from "@/components/smooth-scroll";
 import AppReadyProvider from "@/components/app-ready-provider";
 
 export const metadata: Metadata = {
-  title: "Brittalent - The AI Compliance Firewall",
-  description: "Brittalent enforces SEC, FINRA, and firm policies on every message in real-time.",
+  title: "London Dog Walkers",
+  description: "Professional dog walking services across London.",
 };
 
 export default function RootLayout({
