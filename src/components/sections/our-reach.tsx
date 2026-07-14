@@ -2,6 +2,7 @@
 
 import React from "react";
 import RevealText from "@/components/ui/reveal-text";
+import AnimatedHeading from "@/components/ui/animated-heading";
 
 const SignRight = ({ text, color, textColor = "#3d3024", rotation = "-rotate-2" }: { text: string, color: string, textColor?: string, rotation?: string }) => (
   <div className={`relative w-[240px] sm:w-[280px] md:w-[320px] h-[55px] sm:h-[65px] md:h-[75px] group transition-transform duration-300 hover:scale-105 md:hover:${rotation} origin-center md:origin-left z-10`} style={{ filter: 'drop-shadow(5px 5px 0px #3d3024)' }}>
@@ -73,9 +74,13 @@ const OurReach = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-[#3d3024]"></span>
               Where We Walk
             </div>
-            <h2 className="text-[#3d3024] text-[50px] md:text-[68px] lg:text-[86px] xl:text-[94px] leading-[0.9] font-normal uppercase m-0 tracking-wide" style={{ fontFamily: "'Luckiest Guy', sans-serif" }}>
-              OUR COVERAGE
-            </h2>
+            <AnimatedHeading
+              as="h2"
+              text="OUR COVERAGE"
+              trigger="inView"
+              className="text-[#3d3024] text-[50px] md:text-[68px] lg:text-[86px] xl:text-[94px] leading-[0.9] font-normal uppercase m-0 tracking-wide"
+              style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
+            />
           </div>
 
           {/* Center Column: Signpost */}

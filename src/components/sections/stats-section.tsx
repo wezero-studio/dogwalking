@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import AnimatedHeading from "@/components/ui/animated-heading";
 
 const services = [
   {
@@ -51,14 +52,7 @@ const StatsSection = () => {
     offset: ["start start", "end end"],
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 200,
-    damping: 32,
-    mass: 0.4,
-    restDelta: 0.001,
-  });
-
-  const x = useTransform(smoothProgress, [0, 1], [0, -scrollDistance]);
+  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
 
   return (
     <section ref={targetRef} id="stats" className="relative h-[300vh] bg-[#C8F560]">
@@ -77,12 +71,13 @@ const StatsSection = () => {
               <span className="w-1.5 h-1.5 bg-[#2a5a00] rounded-full"></span>
               What We Offer
             </div>
-            <h2
+            <AnimatedHeading
+              as="h2"
+              text="OUR SERVICES"
+              trigger="inView"
               className="text-[#1a3300] text-[70px] md:text-[90px] lg:text-[110px] leading-[0.9] font-normal uppercase m-0"
               style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
-            >
-              OUR SERVICES
-            </h2>
+            />
             <p className="text-[#2a4000] text-[18px] leading-[1.6] font-medium pr-8">
               Every pet is different. That is why we offer a full range of personalised services crafted around your dog routine, not ours.
             </p>
@@ -126,6 +121,10 @@ const StatsSection = () => {
                   <img
                     src={service.img}
                     alt={service.label}
+                    width={130}
+                    height={130}
+                    loading="eager"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </div>
