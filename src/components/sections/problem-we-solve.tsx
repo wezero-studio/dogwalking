@@ -1,24 +1,31 @@
 "use client";
 
 import React from 'react';
+import { motion, type MotionValue } from 'framer-motion';
 import AnimatedHeading from '@/components/ui/animated-heading';
 
-// Paw shape container
+// Paw shape container — gently "breathes" (a small scale pulse) on a loop, each paw offset
+// so they alternate right-then-left rather than pulsing in unison.
 const PawSticker = ({
   mark,
   children,
   color,
   textColor = "#3d3024",
   className = "",
+  breatheDelay = 0,
 }: {
   mark: string;
   children: React.ReactNode;
   color: string;
   textColor?: string;
   className?: string;
+  breatheDelay?: number;
 }) => (
-  <div
-    className={`relative flex flex-col items-center justify-center w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] transition-transform duration-300 hover:scale-105 ${className}`}
+  <motion.div
+    animate={{ scale: [1, 1.06, 1] }}
+    transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 1.2, delay: breatheDelay, ease: "easeInOut" }}
+    whileHover={{ scale: 1.08 }}
+    className={`relative flex flex-col items-center justify-center w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] ${className}`}
   >
     {/* Background SVG Paw */}
     <svg 
@@ -51,104 +58,76 @@ const PawSticker = ({
         {mark}
       </span>
     </div>
-  </div>
+  </motion.div>
 );
 
-// Ticket border for the button
-function getTicketBorder(fill: string, stroke: string) {
-  const f = encodeURIComponent(fill);
-  const s = encodeURIComponent(stroke);
-  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><rect x='4' y='4' width='112' height='112' rx='24' ry='24' fill='${f}' stroke='${s}' stroke-width='4'/><rect x='11' y='11' width='98' height='98' rx='18' ry='18' fill='none' stroke='${s}' stroke-width='2'/><rect x='16' y='16' width='88' height='88' rx='14' ry='14' fill='none' stroke='${s}' stroke-width='1.5'/></svg>`;
-  return `url("data:image/svg+xml;utf8,${svg}")`;
+interface ProblemWeSolveProps {
+  /** Shared scroll-driven background color (see page.tsx) — keeps this section in sync with the hero, no seam at the boundary. */
+  bgColor?: MotionValue<string>;
 }
 
-const ProblemWeSolve = () => {
+const ProblemWeSolve = ({ bgColor }: ProblemWeSolveProps) => {
   return (
-    <section id="what-we-do" className="relative bg-[#C8F560] pt-24 md:pt-32 pb-32 overflow-hidden text-center font-sans">
+    <motion.section id="what-we-do" style={{ backgroundColor: bgColor ?? "#4ADE80" }} className="relative pt-24 md:pt-32 pb-32 overflow-hidden font-sans">
       {/* Subtle dot pattern */}
       <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#3d3024 2px, transparent 2px)', backgroundSize: '40px 40px' }}></div>
 
-      <div className="relative z-20 w-full max-w-[1280px] mx-auto px-8 md:px-12 flex flex-col items-center">
+      <div className="relative z-20 w-full max-w-[1280px] mx-auto px-8 md:px-12">
 
-        <div className="flex flex-col lg:flex-row justify-center items-center relative w-full mb-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-4 w-full">
 
-          {/* Left Paw Sticker */}
-          <PawSticker
-            mark="?!"
-            color="#A3D8FF"
-            className="lg:absolute lg:left-[-13%] lg:top-[-10px] -rotate-6 mb-8 lg:mb-0 z-30"
-          >
-            Is your dog<br />staring at<br />the leash?
-          </PawSticker>
-
-          {/* Center Text */}
-          <div className="z-20 my-10 lg:my-0 flex flex-col items-center px-4">
+          {/* Left: Heading text */}
+          <div className="z-20 flex flex-col items-center lg:items-start text-center lg:text-left lg:w-[42%] lg:flex-shrink-0 lg:-ml-16 xl:-ml-24">
             <AnimatedHeading
               as="h2"
               text="WE WALK"
               trigger="inView"
-              className="text-[72px] sm:text-[96px] md:text-[120px] lg:text-[150px] xl:text-[170px] leading-[0.88] font-normal uppercase m-0 tracking-tight text-[#3d3024]"
+              className="text-[56px] sm:text-[72px] md:text-[88px] lg:text-[86px] xl:text-[100px] leading-[0.88] font-normal uppercase m-0 tracking-tight text-[#3d3024]"
               style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
             />
             <AnimatedHeading
               as="h2"
               text="YOUR DOGS"
               trigger="inView"
-              className="text-[72px] sm:text-[96px] md:text-[120px] lg:text-[150px] xl:text-[170px] leading-[0.88] font-normal uppercase m-0 tracking-tight text-[#3d3024]"
+              className="text-[56px] sm:text-[72px] md:text-[88px] lg:text-[86px] xl:text-[100px] leading-[0.88] font-normal uppercase m-0 tracking-tight text-[#3d3024]"
               style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
             />
             <AnimatedHeading
               as="h2"
               text="FOR YOU"
               trigger="inView"
-              className="text-[72px] sm:text-[96px] md:text-[120px] lg:text-[150px] xl:text-[170px] leading-[0.88] font-normal uppercase m-0 tracking-tight text-[#3d3024]"
+              className="text-[56px] sm:text-[72px] md:text-[88px] lg:text-[86px] xl:text-[100px] leading-[0.88] font-normal uppercase m-0 tracking-tight text-[#3d3024]"
               style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
             />
           </div>
 
-          {/* Right Paw Sticker */}
-          <PawSticker
-            mark="..."
-            color="#FCD34D"
-            className="lg:absolute lg:right-[-13%] lg:top-[150px] rotate-3 mt-8 lg:mt-0 z-30"
-          >
-            Too busy<br />to give them<br />a long walk?
-          </PawSticker>
+          {/* Center: reserved space — the 3D dog crossing in from the hero (rendered as a shared overlay in page.tsx) sits here */}
+          <div className="hidden lg:block w-[300px] flex-shrink-0" aria-hidden="true" />
 
-        </div>
-
-        {/* Down Arrow + CTA */}
-        <div className="flex flex-col items-center mt-2 lg:mt-4 z-20">
-          <div className="mb-2">
-            <svg width="60" height="72" viewBox="0 0 80 90" fill="none" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M40,6 C78,30 2,58 40,80" stroke="#3d3024" strokeWidth="4" />
-              <path d="M23,65 L38,80 L53,65" stroke="#3d3024" strokeWidth="4" />
-            </svg>
-          </div>
-
-          {/* Ticket-border BOOK A WALK button */}
-          <div
-            className="cursor-pointer transition-transform duration-300 hover:-translate-y-1 hover:brightness-105"
-            style={{
-              border: '28px solid transparent',
-              borderImageSource: getTicketBorder('#F87171', '#3d3024'),
-              borderImageSlice: '28 fill',
-              borderImageRepeat: 'stretch',
-              filter: 'drop-shadow(5px 5px 0 #3d3024)',
-            }}
-          >
-            <a
-              href="#contact"
-              className="flex items-center gap-3 text-[22px] md:text-[26px] font-bold uppercase tracking-wide text-[#3d3024]"
-              style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
+          {/* Right: both paw stickers, grouped together */}
+          <div className="flex flex-col items-center gap-10 lg:w-[32%] lg:flex-shrink-0 z-30">
+            <PawSticker
+              mark="?!"
+              color="#A3D8FF"
+              breatheDelay={1.2}
+              className="-rotate-12 lg:ml-24 xl:ml-32"
             >
-              BOOK A WALK
-            </a>
+              Is your dog<br />staring at<br />the leash?
+            </PawSticker>
+
+            <PawSticker
+              mark="..."
+              color="#FCD34D"
+              className="rotate-[9deg] lg:-ml-16 xl:-ml-24"
+            >
+              Too busy<br />to give them<br />a long walk?
+            </PawSticker>
           </div>
+
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 };
 

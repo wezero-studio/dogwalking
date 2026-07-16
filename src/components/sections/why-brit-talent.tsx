@@ -27,7 +27,7 @@ const columns = [
 
 const WhyBritTalent = () => {
   return (
-    <section className="bg-[#A3D8FF] pt-24 pb-32 font-sans overflow-hidden">
+    <section id="why-us" className="bg-[#A3D8FF] pt-24 pb-32 font-sans overflow-hidden">
       {/* Heading placed normally at the top */}
       <div className="w-full mx-auto px-6 md:px-16 lg:px-24 mb-16 max-w-[1400px]">
         {/* Eyebrow */}

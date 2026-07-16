@@ -1,13 +1,22 @@
 "use client";
 
 import React from "react";
+import { motion, type MotionValue } from "framer-motion";
 import RevealText from "@/components/ui/reveal-text";
 import AnimatedHeading from "@/components/ui/animated-heading";
 
-const Testimonials = () => {
+interface TestimonialsProps {
+  /** Shared scroll-driven background color for the testimonials -> contact handoff (see page.tsx).
+   * Stays pure green until Contact actually starts entering the viewport, then both sections
+   * shift color together — so testimonials reads as static green during normal viewing, and
+   * there's never a seam between the two sections' colors. */
+  bgColor?: MotionValue<string>;
+}
+
+const Testimonials = ({ bgColor }: TestimonialsProps) => {
   return (
-    <section id="testimonials" className="relative w-full bg-[#4ADE80] pt-40 pb-24 md:pb-32 overflow-hidden font-sans border-b-[6px] border-[#3d3024]">
-      
+    <motion.section id="testimonials" style={{ backgroundColor: bgColor ?? "#4ADE80" }} className="relative w-full pt-40 pb-24 md:pb-32 overflow-hidden font-sans">
+
       {/* Top Wave Divider - Fill matches WhyBritTalent bg #A3D8FF */}
       <div className="absolute top-[-1px] left-0 w-full overflow-hidden leading-none z-0">
         <svg 
@@ -87,7 +96,7 @@ const Testimonials = () => {
 
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

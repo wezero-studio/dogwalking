@@ -53,9 +53,13 @@ const StatsSection = () => {
   });
 
   const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
+  // Enters matching window 2's green (#4ADE80, no seam at the top), then eases toward
+  // #C8F560 — which is exactly the color the wave divider at the top of the next
+  // section (OurReach) is already painted, so the bottom seam disappears too.
+  const backgroundColor = useTransform(scrollYProgress, [0, 1], ["#4ADE80", "#C8F560"]);
 
   return (
-    <section ref={targetRef} id="stats" className="relative h-[300vh] bg-[#C8F560]">
+    <motion.section ref={targetRef} id="stats" style={{ backgroundColor }} className="relative h-[300vh]">
       {/* Subtle dot pattern */}
       <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3d3024 2px, transparent 2px)', backgroundSize: '40px 40px' }}></div>
 
@@ -133,7 +137,7 @@ const StatsSection = () => {
           ))}
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

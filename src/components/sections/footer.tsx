@@ -19,7 +19,7 @@ const col3Links = [
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#3d3024] font-sans">
+    <footer className="w-full bg-[#1a1208] font-sans">
       <div className="w-full mx-auto px-6 md:px-16 lg:px-24 py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-4 items-start border-b border-white/20 pb-16">
           

@@ -1,102 +1,105 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { X } from "lucide-react";
+
+const NAV_LINKS = [
+  { name: "Services", href: "#stats" },
+  { name: "Coverage", href: "#where-we-source" },
+  { name: "How It Works", href: "#how-it-works" },
+  { name: "Why Us", href: "#why-us" },
+  { name: "Reviews", href: "#testimonials" },
+  { name: "Contact", href: "#contact" },
+];
 
 const Navigation = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     let prevScrollY = window.scrollY;
-    
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      // Hide on scroll down, show on scroll up
       const nextVisible = !(currentScrollY > prevScrollY && currentScrollY > 100 && !isMenuOpen);
       prevScrollY = currentScrollY;
-      
       setIsVisible(nextVisible);
-      setIsScrolled(currentScrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMenuOpen]);
 
-  const navItems = [
-    { name: "What We Do", href: "#what-we-do" },
-    { name: "How It Works", href: "#how-it-works" },
-    { name: "Where We Source", href: "#where-we-source" },
-    { name: "Contact", href: "#contact" },
-  ];
-
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[1000] py-4 transition-all duration-300 pointer-events-none ${
+      className={`fixed top-0 left-0 right-0 z-[1000] transition-transform duration-300 pointer-events-none ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 pointer-events-auto">
-        <div className="flex items-center justify-between">
-          
-          {/* Left / Empty to balance */}
-          <div className="w-1/3 flex items-center">
-            <Link href="/" className="flex items-center flex-shrink-0">
-              <span
-                className="text-[28px] md:text-[36px] font-bold tracking-tight uppercase text-[#3d3024] leading-none"
-                style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
+      <div className="w-full px-6 md:px-16 pt-6 pointer-events-auto">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center">
+
+          {/* Left: reserved empty space for a future logo */}
+          <div className="hidden lg:block" />
+
+          {/* Nav links — centered */}
+          <nav className="hidden lg:flex items-center gap-8 justify-self-center">
+            {NAV_LINKS.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-[14px] font-semibold text-[#1a1208] hover:opacity-60 transition-opacity tracking-wide whitespace-nowrap"
               >
-                D D
-              </span>
-            </Link>
-          </div>
+                {item.name}
+              </a>
+            ))}
+          </nav>
 
-          {/* Center Logo space (now empty) */}
-          <div className="w-1/3 flex justify-center flex-shrink-0">
-          </div>
+          {/* CTA */}
+          <a
+            href="#contact"
+            className="hidden lg:flex items-center gap-2 px-5 h-11 bg-[#1a1208] text-white rounded-xl text-[14px] font-bold uppercase tracking-wide hover:opacity-85 transition-opacity justify-self-end"
+            style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
+          >
+            Schedule a Walk
+          </a>
 
-          {/* Right side: Circular buttons */}
-          <div className="w-1/3 flex items-center justify-end gap-2 md:gap-4">
-            
+          {/* Mobile: hamburger only */}
+          <button
+            className="lg:hidden col-start-3 justify-self-end text-[#1a1208]"
+            onClick={() => setIsMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              {isMenuOpen
+                ? <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                : <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              }
+            </svg>
+          </button>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        {isMenuOpen && (
+          <div className="lg:hidden mt-4 bg-[#FCD34D] border-[2px] border-[#1a1208] rounded-xl px-6 py-5 flex flex-col gap-4">
+            {NAV_LINKS.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-[18px] font-bold text-[#1a1208]"
+                style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </a>
+            ))}
             <a
               href="#contact"
-              className="group flex flex-col items-center justify-center w-[45px] h-[45px] md:w-[60px] md:h-[60px] rounded-full border border-[#3d3024] text-[#3d3024] hover:bg-[#3d3024] hover:text-[#A3D8FF] transition-colors"
+              className="mt-2 flex items-center justify-center gap-2 px-5 h-12 bg-[#1a1208] text-white rounded-xl text-[15px] font-bold uppercase tracking-wide"
+              style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
+              onClick={() => setIsMenuOpen(false)}
             >
-               <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-widest">Talk</span>
+              Schedule a Walk
             </a>
-
-            <div className="relative">
-              <button
-                onClick={() => setIsMenuOpen((v) => !v)}
-                className="group flex flex-col items-center justify-center w-[45px] h-[45px] md:w-[60px] md:h-[60px] rounded-full border border-[#3d3024] text-[#3d3024] hover:bg-[#3d3024] hover:text-[#A3D8FF] transition-colors bg-transparent"
-              >
-                {isMenuOpen ? <X className="w-4 h-4 md:w-5 md:h-5 mb-0.5" /> : <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-widest">Menu</span>}
-              </button>
-
-              {/* Expanded Panel */}
-              {isMenuOpen && (
-                <div
-                  className="absolute top-full right-0 mt-4 w-[240px] rounded-2xl border-[3px] border-[#3d3024] py-6 px-6 flex flex-col gap-4 transition-colors bg-[#F8F9FA] shadow-[8px_8px_0_#3d3024]"
-                >
-                  {navItems.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="text-[20px] font-bold uppercase tracking-wide text-[#3d3024] hover:text-[#F87171] transition-colors"
-                      style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
           </div>
-        </div>
+        )}
       </div>
     </header>
   );

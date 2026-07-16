@@ -1,10 +1,15 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type MotionValue } from "framer-motion";
 import RevealText from "@/components/ui/reveal-text";
 
-const ContactSection = () => {
+interface ContactSectionProps {
+  /** Shared scroll-driven background color for the testimonials -> contact handoff (see page.tsx) — same motion value Testimonials uses, so the whole screen shifts color together with no seam. */
+  bgColor?: MotionValue<string>;
+}
+
+const ContactSection = ({ bgColor }: ContactSectionProps) => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -16,7 +21,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="relative w-full min-h-[75vh] bg-[#A3D8FF] overflow-hidden font-sans flex flex-col items-center justify-center py-24 md:py-32">
+    <motion.section id="contact" style={{ backgroundColor: bgColor ?? "#A3D8FF" }} className="relative w-full min-h-[75vh] overflow-hidden font-sans flex flex-col items-center justify-center py-24 md:py-32">
       {/* Decorative background elements (inspired by reference) */}
       
       {/* Overlapping squares (top left) */}
@@ -112,7 +117,7 @@ const ContactSection = () => {
           )}
         </RevealText>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
