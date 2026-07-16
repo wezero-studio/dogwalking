@@ -8,8 +8,14 @@ interface LoaderProps {
   onReveal?: () => void;
 }
 
+// Hard cap on how long the loader will wait for the 3D dog model before giving
+// up and revealing the page anyway — a stalled/broken fetch must never leave
+// the loader stuck forever.
+const MODEL_WAIT_TIMEOUT_MS = 8000;
+
 const Loader = ({ onReveal }: LoaderProps) => {
-  // Jumps rather than a smooth 0->100 count: 0, two randomized mid checkpoints, 100.
+  // Jumps rather than a smooth 0->100 count: 0, two randomized mid checkpoints, then a
+  // final 100 held back until the dog model (see below) is actually ready to render.
   const steps = useMemo(() => {
     const mid1 = 25 + Math.floor(Math.random() * 25); // 25-49
     const mid2 = 60 + Math.floor(Math.random() * 25); // 60-84
@@ -17,24 +23,58 @@ const Loader = ({ onReveal }: LoaderProps) => {
   }, []);
 
   const [stepIndex, setStepIndex] = useState(0);
+  const [reachedHoldStep, setReachedHoldStep] = useState(false);
+  // The desktop-only 3D dog (`/dog1.glb`, loaded by <model-viewer> further down the
+  // tree) is the single heaviest asset on the page. The loader has no direct handle on
+  // that element, so it independently fetches the same URL here — this both gates
+  // completion on the model actually being downloaded AND warms the browser's HTTP
+  // cache, so model-viewer's own request for it resolves instantly right after.
+  const [modelReady, setModelReady] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [hide, setHide] = useState(false);
 
-  const progress = steps[stepIndex];
+  const progress = steps[reachedHoldStep && modelReady ? steps.length - 1 : stepIndex];
 
   useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
     let elapsed = 0;
 
-    for (let idx = 1; idx < steps.length; idx++) {
+    // Advance through every step except the final one — that last jump to 100 is held
+    // until modelReady flips true, below.
+    for (let idx = 1; idx < steps.length - 1; idx++) {
       elapsed += idx === 1 ? 300 : 500;
       const targetIndex = idx;
       timers.push(setTimeout(() => setStepIndex(targetIndex), elapsed));
     }
-    timers.push(setTimeout(() => setIsDone(true), elapsed + 50));
+    timers.push(setTimeout(() => setReachedHoldStep(true), elapsed + 500));
 
     return () => timers.forEach(clearTimeout);
   }, [steps]);
+
+  useEffect(() => {
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    if (!isDesktop) {
+      setModelReady(true);
+      return;
+    }
+
+    let settled = false;
+    const settle = () => {
+      if (settled) return;
+      settled = true;
+      setModelReady(true);
+    };
+
+    fetch("/dog1.glb", { cache: "force-cache" }).then(settle).catch(settle);
+    const timeout = setTimeout(settle, MODEL_WAIT_TIMEOUT_MS);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    if (!reachedHoldStep || !modelReady) return;
+    setStepIndex(steps.length - 1);
+    setIsDone(true);
+  }, [reachedHoldStep, modelReady, steps.length]);
 
   useEffect(() => {
     if (!isDone) return;

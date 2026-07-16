@@ -43,8 +43,20 @@ const StatsSection = () => {
       }
     };
     measure();
+
+    // Window resize alone isn't enough: the row's own width shifts after mount too —
+    // the "OUR SERVICES" heading swaps from a fallback font to 'Luckiest Guy' once it
+    // loads, reflowing the intro panel. A stale scrollDistance from before that reflow
+    // meant `x` was mapped against the wrong end point, so the last card would snap/jump
+    // right as the pinned scroll finished. A ResizeObserver on the row catches that (and
+    // any other) layout shift, not just viewport resizes.
+    const resizeObserver = new ResizeObserver(measure);
+    if (rowRef.current) resizeObserver.observe(rowRef.current);
     window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", measure);
+    };
   }, []);
 
   const { scrollYProgress } = useScroll({
