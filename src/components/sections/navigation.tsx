@@ -45,17 +45,16 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-[14px] font-semibold text-[#1a1208] hover:opacity-60 transition-opacity tracking-wide whitespace-nowrap"
+                className="text-[14px] font-semibold text-[#2E1C3B] hover:opacity-60 transition-opacity tracking-wide whitespace-nowrap"
               >
                 {item.name}
               </a>
             ))}
           </nav>
 
-          {/* CTA */}
           <a
             href="#contact"
-            className="hidden lg:flex items-center gap-2 px-5 h-11 bg-[#1a1208] text-white rounded-xl text-[14px] font-bold uppercase tracking-wide hover:opacity-85 transition-opacity justify-self-end"
+            className="hidden lg:flex items-center gap-2 px-5 h-11 bg-[#2E1C3B] text-[#F9F4EB] rounded-xl text-[14px] font-bold uppercase tracking-wide hover:opacity-85 transition-opacity justify-self-end"
             style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
           >
             Schedule a Walk

@@ -2,6 +2,8 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import AnimatedHeading from "@/components/ui/animated-heading";
+import RevealText from "@/components/ui/reveal-text";
 
 interface Step {
   label: string;
@@ -87,7 +89,7 @@ const StepCard = ({
         </span>
         <h3
           className="text-[22px] leading-tight uppercase text-white m-0"
-          style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
+          style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
         >
           {step.label}
         </h3>
@@ -104,7 +106,7 @@ const GetStarted = () => {
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
 
   return (
-    <section id="how-it-works" className="relative bg-[#A78BFA]">
+    <section id="how-it-works" className="relative bg-[#2E1C3B]">
       {/* Top wave divider — filled with OurReach's blue (the section right before this one),
           same technique as the wave at the top of OurReach itself */}
       <div className="absolute top-[-1px] left-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
@@ -116,7 +118,7 @@ const GetStarted = () => {
         >
           <path
             d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            className="fill-[#A3D8FF]"
+            className="fill-[#F9F4EB]"
           />
         </svg>
       </div>
@@ -138,17 +140,26 @@ const GetStarted = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-white/80" />
               How It Works
             </div>
-            <h2 className="uppercase leading-[0.9] m-0" style={{ fontFamily: "'Luckiest Guy', sans-serif", fontSize: "clamp(56px, 9vw, 132px)" }}>
-              <span className="block text-white">Walkies Made</span>
-              <span className="block" style={{ color: "#C8F560", WebkitTextStroke: "2px #C8F560" }}>Perfectly</span>
-              <span className="block" style={{ color: "transparent", WebkitTextStroke: "3px #FFFFFF" }}>Simple</span>
-            </h2>
-            <p
+            <AnimatedHeading
+              as="h2"
+              trigger="inView"
+              lines={[
+                { text: "Walkies Made", className: "text-white" },
+                { text: "Perfectly", style: { color: "#C8F560", WebkitTextStroke: "2px #C8F560" } },
+                { text: "Simple", style: { color: "transparent", WebkitTextStroke: "3px #FFFFFF" } },
+              ]}
+              className="uppercase leading-[0.9] m-0"
+              style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700, fontSize: "clamp(56px, 9vw, 132px)" }}
+            />
+            <RevealText
+              as="p"
+              trigger="inView"
+              delay={0.2}
               className="mt-6 text-[16px] md:text-[18px] text-white/85 max-w-[480px] mx-auto leading-relaxed"
               style={{ fontFamily: "'Inter', sans-serif" }}
             >
               From your first booking to your dog&apos;s happiest walk yet — here&apos;s exactly how it works.
-            </p>
+            </RevealText>
           </div>
 
           {STEPS.map((step, i) => (
@@ -163,14 +174,26 @@ const GetStarted = () => {
           <span className="w-1.5 h-1.5 rounded-full bg-white/80" />
           How It Works
         </div>
-        <h2 className="uppercase leading-[0.9] m-0 text-[56px] sm:text-[76px]" style={{ fontFamily: "'Luckiest Guy', sans-serif" }}>
-          <span className="block text-white">Walkies Made</span>
-          <span className="block" style={{ color: "#C8F560", WebkitTextStroke: "2px #C8F560" }}>Perfectly</span>
-          <span className="block" style={{ color: "transparent", WebkitTextStroke: "2px #FFFFFF" }}>Simple</span>
-        </h2>
-        <p className="mt-6 text-[16px] text-white/85 max-w-[440px] leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
+        <AnimatedHeading
+          as="h2"
+          trigger="inView"
+          lines={[
+            { text: "Walkies Made", className: "text-white" },
+            { text: "Perfectly", style: { color: "#C8F560", WebkitTextStroke: "2px #C8F560" } },
+            { text: "Simple", style: { color: "transparent", WebkitTextStroke: "2px #FFFFFF" } },
+          ]}
+          className="uppercase leading-[0.9] m-0 text-[56px] sm:text-[76px]"
+          style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
+        />
+        <RevealText
+          as="p"
+          trigger="inView"
+          delay={0.2}
+          className="mt-6 text-[16px] text-white/85 max-w-[440px] leading-relaxed"
+          style={{ fontFamily: "'Inter', sans-serif" }}
+        >
           From your first booking to your dog&apos;s happiest walk yet — here&apos;s exactly how it works.
-        </p>
+        </RevealText>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12 w-full max-w-[600px]">
           {STEPS.map((step, i) => (
@@ -181,7 +204,7 @@ const GetStarted = () => {
                 <span className="block text-[10px] font-bold uppercase tracking-[0.15em] text-white/80 mb-1" style={{ fontFamily: "'Inter', sans-serif" }}>
                   Step {i + 1}
                 </span>
-                <h3 className="text-[18px] leading-tight uppercase text-white m-0" style={{ fontFamily: "'Luckiest Guy', sans-serif" }}>
+                <h3 className="text-[18px] leading-tight uppercase text-white m-0" style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}>
                   {step.label}
                 </h3>
               </div>
@@ -190,20 +213,7 @@ const GetStarted = () => {
         </div>
       </div>
 
-      {/* Bottom wave divider — filled with WhyBritTalent's blue (the next section), same technique as the top wave */}
-      <div className="absolute bottom-[-1px] left-0 w-full overflow-hidden leading-none z-10 pointer-events-none rotate-180">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="relative block w-[calc(100%+1.3px)] h-[120px]"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            className="fill-[#A3D8FF]"
-          />
-        </svg>
-      </div>
+
     </section>
   );
 };

@@ -4,11 +4,16 @@ import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useAppReady } from "@/components/app-ready-context";
 
+/** A line can carry its own className/style — e.g. a heading where each line is a
+ *  different color/stroke treatment (see GetStarted's "Walkies Made / Perfectly /
+ *  Simple"). A plain string uses the heading's own className/style for that line. */
+type HeadingLine = string | { text: string; className?: string; style?: React.CSSProperties };
+
 interface AnimatedHeadingProps {
   /** Single string, wrapped naturally by the browser. Ignored if `lines` is given. */
   text?: string;
   /** Hard line breaks — each entry renders as its own non-wrapping line. */
-  lines?: string[];
+  lines?: HeadingLine[];
   className?: string;
   style?: React.CSSProperties;
   as?: "h1" | "h2" | "h3" | "p" | "span";
@@ -16,6 +21,11 @@ interface AnimatedHeadingProps {
   stagger?: number;
   /** "mount" plays immediately (use above-the-fold, e.g. hero); "inView" plays once scrolled into view. */
   trigger?: "mount" | "inView";
+  /** Forces each `lines` entry onto exactly one row (from md up) instead of letting it
+   *  wrap if too long for its container. Opt-in — most headings should be free to wrap
+   *  rather than overflow past a fixed-width column into neighboring content; only use
+   *  this where the sizing has actually been checked against every breakpoint's width. */
+  nowrap?: boolean;
 }
 
 /**
@@ -37,6 +47,7 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({
   delay = 0,
   stagger = 0.018,
   trigger = "mount",
+  nowrap = false,
 }) => {
   // Cast to `any`: a strongly-typed dynamic tag makes TS compute props across the
   // full IntrinsicElements union, which is too complex to represent.
@@ -47,8 +58,10 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({
   const appReady = useAppReady();
   const shouldAnimate = trigger === "mount" ? appReady : isInView;
 
-  const resolvedLines = lines ?? [text ?? ""];
-  const fullText = resolvedLines.join(" ");
+  const resolvedLines = (lines ?? [text ?? ""]).map((l) =>
+    typeof l === "string" ? { text: l, className: undefined, style: undefined } : l
+  );
+  const fullText = resolvedLines.map((l) => l.text).join(" ");
   let letterIndex = 0;
 
   const renderWord = (word: string, key: number) => (
@@ -82,8 +95,12 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({
   return (
     <Tag ref={ref} className={className} style={style} aria-label={fullText}>
       {resolvedLines.map((line, li) => (
-        <span key={li} className={lines ? "block whitespace-nowrap" : undefined}>
-          {line.split(" ").map((word, wi, arr) => (
+        <span
+          key={li}
+          className={[lines ? (nowrap ? "block md:whitespace-nowrap" : "block") : undefined, line.className].filter(Boolean).join(" ") || undefined}
+          style={line.style}
+        >
+          {line.text.split(" ").map((word, wi, arr) => (
             <React.Fragment key={wi}>
               {renderWord(word, wi)}
               {wi < arr.length - 1 ? " " : ""}

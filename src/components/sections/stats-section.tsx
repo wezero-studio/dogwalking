@@ -1,155 +1,117 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 import AnimatedHeading from "@/components/ui/animated-heading";
+import RevealText from "@/components/ui/reveal-text";
 
 const services = [
   {
     label: "Dog Walking",
-    desc: "Daily walks tailored to your dog breed, energy, and personality. Solo or group walks available — rain or shine.",
-    img: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=400&fit=crop&q=80",
-    tag: "Most Popular",
+    desc: "Daily walks tailored to your dog's breed, energy, and personality. Solo or group walks available — rain or shine.",
   },
   {
-    label: "Cat Sitting",
-    desc: "In-home visits for your feline friends. We feed, play, and give them the love they deserve while you are away.",
-    img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=400&fit=crop&q=80",
-    tag: "Our Fav",
+    label: "Dog Training",
+    desc: "From basic obedience to advanced tricks. We help your dog become the best version of themselves using positive reinforcement.",
   },
   {
     label: "Dog Grooming",
     desc: "From baths to nail trims and full breed cuts. We keep your pup looking and smelling their absolute best.",
-    img: "https://images.unsplash.com/photo-1625316708582-7c38734be31d?w=400&h=400&fit=crop&q=80",
-    tag: "Pamper Time",
   },
   {
     label: "Breakfast & Care",
     desc: "Morning feeding, medicine, and a little love. Perfect for pet parents heading to early meetings or long shifts.",
-    img: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=400&fit=crop&q=80",
-    tag: "Rise & Shine",
   },
 ];
 
 const StatsSection = () => {
-  const targetRef = useRef<HTMLDivElement | null>(null);
-  const rowRef = useRef<HTMLDivElement | null>(null);
-  const [scrollDistance, setScrollDistance] = useState(0);
-
-  useEffect(() => {
-    const measure = () => {
-      if (rowRef.current) {
-        setScrollDistance(rowRef.current.scrollWidth - window.innerWidth);
-      }
-    };
-    measure();
-
-    // Window resize alone isn't enough: the row's own width shifts after mount too —
-    // the "OUR SERVICES" heading swaps from a fallback font to 'Luckiest Guy' once it
-    // loads, reflowing the intro panel. A stale scrollDistance from before that reflow
-    // meant `x` was mapped against the wrong end point, so the last card would snap/jump
-    // right as the pinned scroll finished. A ResizeObserver on the row catches that (and
-    // any other) layout shift, not just viewport resizes.
-    const resizeObserver = new ResizeObserver(measure);
-    if (rowRef.current) resizeObserver.observe(rowRef.current);
-    window.addEventListener("resize", measure);
-    return () => {
-      resizeObserver.disconnect();
-      window.removeEventListener("resize", measure);
-    };
-  }, []);
-
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start start", "end end"],
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
-  // Enters matching window 2's green (#4ADE80, no seam at the top), then eases toward
-  // #C8F560 — which is exactly the color the wave divider at the top of the next
-  // section (OurReach) is already painted, so the bottom seam disappears too.
-  const backgroundColor = useTransform(scrollYProgress, [0, 1], ["#4ADE80", "#C8F560"]);
-
   return (
-    <motion.section ref={targetRef} id="stats" style={{ backgroundColor }} className="relative h-[300vh]">
-      {/* Subtle dot pattern */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3d3024 2px, transparent 2px)', backgroundSize: '40px 40px' }}></div>
+    <section id="stats" className="relative min-h-[160vh] flex flex-col justify-between overflow-hidden">
+      {/* Inject Google Font for the Joyrush style if not already loaded globally */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
+        .joyrush-font {
+          font-family: 'Fraunces', serif;
+        }
+      `}} />
 
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <motion.div
-          ref={rowRef}
-          style={{ x, willChange: "transform" }}
-          className="flex items-center gap-8 md:gap-12 px-8 md:px-24 w-max"
+      {/* ── Background Image & Gradient Overlay ── */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/services-bg.jpg"
+          alt="Dogs and owners at the park"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/30" />
+      </div>
+
+      {/* ── Top Content: Headings ── */}
+      <div className="relative z-10 flex flex-col items-center justify-center pt-32 pb-16 px-6 text-center">
+        <AnimatedHeading
+          as="h2"
+          trigger="inView"
+          lines={["YOUR DAY IS HECTIC.", "YOUR DOG'S SHOULDN'T BE."]}
+          className="text-white text-[34px] sm:text-[48px] md:text-[60px] lg:text-[72px] leading-[0.95] uppercase max-w-[1200px]"
+          style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700, textShadow: "0 4px 24px rgba(0,0,0,0.3)" }}
+        />
+
+        <RevealText
+          as="p"
+          trigger="inView"
+          delay={0.2}
+          className="joyrush-font mt-8 text-white text-[18px] sm:text-[22px] max-w-[600px] leading-relaxed font-medium opacity-90"
+          style={{ textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}
         >
-          {/* 1. Intro Text Panel */}
-          <div className="w-[85vw] md:w-[450px] flex-shrink-0 flex flex-col gap-6">
-            <div className="flex items-center gap-3 text-[13px] font-semibold tracking-[0.05em] uppercase text-[#2a5a00]">
-              <span className="w-1.5 h-1.5 bg-[#2a5a00] rounded-full"></span>
-              What We Offer
-            </div>
-            <AnimatedHeading
-              as="h2"
-              text="OUR SERVICES"
-              trigger="inView"
-              className="text-[#1a3300] text-[70px] md:text-[90px] lg:text-[110px] leading-[0.9] font-normal uppercase m-0"
-              style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
-            />
-            <p className="text-[#2a4000] text-[18px] leading-[1.6] font-medium pr-8">
-              Every pet is different. That is why we offer a full range of personalised services crafted around your dog routine, not ours.
-            </p>
-          </div>
+          Our company is crafted to turn those busy work days into joyful harmony and total balance for your pets.
+        </RevealText>
+      </div>
 
-          {/* 2. Service Cards */}
+      {/* ── Bottom Content: Service Cards ── */}
+      <div className="relative z-10 w-full px-6 md:px-12 pb-16 mt-auto max-w-[1600px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
-              className="ticket-card w-[85vw] md:w-[420px] h-[480px] p-6 flex flex-col justify-between flex-shrink-0 relative group transition-transform duration-300 hover:-translate-y-2"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group bg-[#F9F4EB] rounded-[32px] border-[5px] border-[#FF5722] p-8 flex flex-col justify-between h-[320px] transition-transform hover:-translate-y-2 shadow-xl cursor-pointer"
             >
-              {/* Arrow button */}
-              <div className="absolute top-4 right-4 w-[50px] h-[50px] border-2 border-[#2a5a00] rounded-full flex items-center justify-center transition-colors duration-300 group-hover:bg-[#2a5a00] group-hover:text-[#C8F560] text-[#2a5a00] z-10">
-                <svg
-                  className="w-6 h-6 text-inherit -rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
+              {/* Card Title */}
+              <h3
+                className="text-[#2E1C3B] text-[28px] md:text-[32px] leading-tight"
+                style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
+              >
+                {service.label}
+              </h3>
+              
+              {/* Card Description */}
+              <div className="flex flex-col gap-4 mt-auto">
+                <p 
+                  className="text-[#2E1C3B] text-[15px] sm:text-[16px] leading-[1.6] font-medium"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7 7 7-7 7" />
-                </svg>
-              </div>
-
-              {/* Top: Tag + Title + Desc */}
-              <div className="flex flex-col gap-3 mt-2">
-                <span className="text-[11px] uppercase font-bold tracking-[0.12em] text-[#2a5a00] opacity-70">
-                  {service.tag}
-                </span>
-                <h3 className="text-[26px] md:text-[28px] font-bold text-[#1a3300] uppercase tracking-wide border-b-2 border-[#2a5a00] pb-4 mb-1 pr-14 leading-tight">
-                  {service.label}
-                </h3>
-                <p className="text-[#2a4000] text-[15px] leading-[1.55] font-medium max-w-[90%]">
                   {service.desc}
                 </p>
-              </div>
-
-              {/* Bottom: Circular Image */}
-              <div className="flex justify-end mt-auto">
-                <div className="w-[130px] h-[130px] rounded-full border-4 border-[#2a5a00] overflow-hidden flex-shrink-0 shadow-md">
-                  <img
-                    src={service.img}
-                    alt={service.label}
-                    width={130}
-                    height={130}
-                    loading="eager"
-                    decoding="async"
-                    className="w-full h-full object-cover"
-                  />
+                
+                {/* Decorative Bottom Right Arrow */}
+                <div className="flex justify-end mt-2">
+                  <div className="w-12 h-12 rounded-full bg-[#FF5722] flex items-center justify-center text-white transition-transform group-hover:scale-110 shadow-md">
+                    <svg className="w-6 h-6 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7 7 7-7 7" />
+                    </svg>
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 
