@@ -2,13 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 
+// href values point at real live section ids — the previous list had "Coverage"
+// (#where-we-source) and "Why Us" (#why-us) pointing at sections that don't exist
+// on the page anymore, so those links silently did nothing.
 const NAV_LINKS = [
   { name: "Services", href: "#stats" },
-  { name: "Coverage", href: "#where-we-source" },
   { name: "How It Works", href: "#how-it-works" },
-  { name: "Why Us", href: "#why-us" },
+  { name: "Pricing", href: "#pricing" },
   { name: "Reviews", href: "#testimonials" },
-  { name: "Contact", href: "#contact" },
+  { name: "Why Us", href: "#what-we-do" },
 ];
 
 const Navigation = () => {
@@ -93,7 +95,7 @@ const Navigation = () => {
             className="hidden lg:flex items-center gap-2 px-6 h-11 rounded-full text-[14px] font-bold uppercase tracking-wide hover:scale-105 transition-transform justify-self-end bg-[#1B3B2C] text-white"
             style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
           >
-            Schedule a Walk
+            Book Now
           </a>
 
           {/* Mobile: hamburger */}
@@ -125,6 +127,18 @@ const Navigation = () => {
                 {item.name}
               </a>
             ))}
+            {/* Desktop has this as a standing pill in the header; mobile only had the
+                hamburger's link list with no way to book at all until this was added. */}
+            <a
+              href="https://cal.eu/12345678910/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 mt-2 px-6 h-12 rounded-full text-[15px] font-bold uppercase tracking-wide bg-[#1B3B2C] text-white"
+              style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Book Now
+            </a>
           </div>
         )}
       </div>

@@ -11,7 +11,7 @@ const PawImage = ({ src, className = "", breatheDelay = 0, clipId = "pawClip1", 
   <motion.div
     animate={{ scale: [1, 1.03, 1] }}
     transition={{ duration: 4, repeat: Infinity, delay: breatheDelay, ease: "easeInOut" }}
-    className={`relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] ${className}`}
+    className={`relative w-[220px] h-[220px] sm:w-[320px] sm:h-[320px] ${className}`}
   >
     <svg 
       viewBox="0 0 100 100" 

@@ -11,6 +11,7 @@ import GetStarted from "@/components/sections/get-started";
 import FaqSection from "@/components/sections/faq-section";
 import Testimonials from "@/components/sections/testimonials";
 import ContactSection from "@/components/sections/contact-section";
+import BookingSection from "@/components/sections/booking-section";
 import Footer from "@/components/sections/footer";
 
 export default function Home() {
@@ -35,6 +36,7 @@ export default function Home() {
         <GetStarted />
         <FaqSection />
         <Testimonials bgColor={testimonialsToContactColor} />
+        <BookingSection />
         <div ref={contactRef}>
           <ContactSection bgColor={testimonialsToContactColor} />
         </div>

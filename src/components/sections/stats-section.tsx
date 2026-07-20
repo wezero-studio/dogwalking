@@ -18,11 +18,20 @@ const StatsSection = () => {
 
       {/* ── Background Image & Gradient Overlay ── */}
       <div className="absolute inset-0 z-0">
+        {/* Desktop Image */}
         <Image
           src="https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1974&auto=format&fit=crop"
           alt="Dogs and owners at the park"
           fill
-          className="object-cover object-center"
+          className="hidden md:block object-cover object-center"
+          sizes="100vw"
+        />
+        {/* Mobile Vertical Image */}
+        <Image
+          src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=800&auto=format&fit=crop"
+          alt="Vertical dog looking up"
+          fill
+          className="block md:hidden object-cover object-center"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/30" />

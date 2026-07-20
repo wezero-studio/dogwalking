@@ -11,12 +11,22 @@ const HeroSection: React.FC = () => {
 
       {/* ── Full-screen Background Image ── */}
       <div className="absolute inset-0 z-0">
+        {/* Desktop Image */}
         <Image
           src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=2070&auto=format&fit=crop"
           alt="Happy dogs running"
           fill
           priority
-          className="object-cover object-center"
+          className="hidden md:block object-cover object-center"
+          sizes="100vw"
+        />
+        {/* Mobile Vertical Image */}
+        <Image
+          src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=800&auto=format&fit=crop"
+          alt="Happy dog vertical"
+          fill
+          priority
+          className="block md:hidden object-cover object-center"
           sizes="100vw"
         />
         {/* Gradient: stronger on left so text pops, fades out to the right */}
@@ -24,7 +34,7 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* ── Content ── */}
-      <div className="relative z-10 w-full px-2 md:px-6 lg:px-8 pt-24 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12">
+      <div className="relative z-10 w-full px-6 md:px-8 lg:px-8 pt-24 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12">
 
         {/* Left: Main Heading */}
         <div className="flex flex-col items-start lg:self-start lg:-mt-8">
