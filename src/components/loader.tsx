@@ -102,7 +102,7 @@ const Loader = ({ onReveal }: LoaderProps) => {
                 animate={{ y: "0%" }}
                 exit={{ y: "-110%" }}
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 flex items-center justify-center text-[80px] md:text-[140px] text-[#2E1C3B] tabular-nums leading-none"
+                className="absolute inset-0 flex items-center justify-center text-[80px] md:text-[140px] text-[#1B3B2C] tabular-nums leading-none"
                 style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
               >
                 {progress}%
@@ -110,7 +110,7 @@ const Loader = ({ onReveal }: LoaderProps) => {
             </AnimatePresence>
           </div>
 
-          <div className="fixed bottom-0 left-0 right-0 w-full h-[8px] bg-[#2E1C3B]/15 overflow-hidden">
+          <div className="fixed bottom-0 left-0 right-0 w-full h-[8px] bg-[#1B3B2C]/15 overflow-hidden">
             <motion.div
               className="h-full bg-[#FF5722]"
               animate={{ width: `${progress}%` }}

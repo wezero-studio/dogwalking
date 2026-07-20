@@ -33,7 +33,7 @@ const reviews = [
 ];
 
 const Star = () => (
-  <svg className="w-5 h-5 text-[#2E1C3B] fill-current" viewBox="0 0 24 24">
+  <svg className="w-5 h-5 text-[#1B3B2C] fill-current" viewBox="0 0 24 24">
     <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
   </svg>
 );
@@ -65,7 +65,7 @@ const Testimonials = ({ bgColor }: { bgColor?: MotionValue<string> }) => {
           as="h2"
           trigger="inView"
           lines={["DON'T TAKE OUR", "WORD FOR IT"]}
-          className="text-[#2E1C3B] text-[40px] md:text-[64px] lg:text-[80px] leading-[0.95] text-center max-w-[900px] uppercase mb-12"
+          className="text-[#1B3B2C] text-[40px] md:text-[64px] lg:text-[80px] leading-[0.95] text-center max-w-[900px] uppercase mb-12"
           style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
         />
 
@@ -73,7 +73,7 @@ const Testimonials = ({ bgColor }: { bgColor?: MotionValue<string> }) => {
         <div className="flex gap-4 mb-12">
           <button 
             onClick={() => scroll("left")}
-            className="w-12 h-12 rounded-full border-[1.5px] border-[#2E1C3B] flex items-center justify-center text-[#2E1C3B] hover:bg-[#2E1C3B] hover:text-[#F9F4EB] transition-colors"
+            className="w-12 h-12 rounded-full border-[1.5px] border-[#1B3B2C] flex items-center justify-center text-[#1B3B2C] hover:bg-[#1B3B2C] hover:text-[#F9F4EB] transition-colors"
             aria-label="Scroll left"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
@@ -82,7 +82,7 @@ const Testimonials = ({ bgColor }: { bgColor?: MotionValue<string> }) => {
           </button>
           <button 
             onClick={() => scroll("right")}
-            className="w-12 h-12 rounded-full border-[1.5px] border-[#2E1C3B] flex items-center justify-center text-[#2E1C3B] hover:bg-[#2E1C3B] hover:text-[#F9F4EB] transition-colors"
+            className="w-12 h-12 rounded-full border-[1.5px] border-[#1B3B2C] flex items-center justify-center text-[#1B3B2C] hover:bg-[#1B3B2C] hover:text-[#F9F4EB] transition-colors"
             aria-label="Scroll right"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
@@ -100,25 +100,25 @@ const Testimonials = ({ bgColor }: { bgColor?: MotionValue<string> }) => {
           {reviews.map((review, i) => (
             <div 
               key={i}
-              className="relative flex-shrink-0 w-[300px] md:w-[380px] bg-[#F9F4EB] border-[1.5px] border-[#2E1C3B] rounded-3xl p-8 flex flex-col justify-between snap-start"
+              className="relative flex-shrink-0 w-[300px] md:w-[380px] bg-[#F9F4EB] border-[1.5px] border-[#1B3B2C] rounded-3xl p-8 flex flex-col justify-between snap-start"
             >
               <div className="flex flex-col gap-6">
                 <div className="flex gap-1">
                   <Star /><Star /><Star /><Star /><Star />
                 </div>
                 <h3
-                  className="text-[#2E1C3B] text-[24px] md:text-[28px] leading-tight font-medium"
+                  className="text-[#1B3B2C] text-[24px] md:text-[28px] leading-tight font-medium"
                   style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
                 >
                   {review.title}
                 </h3>
-                <p className="text-[#2E1C3B] text-[15px] leading-[1.6] font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>
+                <p className="text-[#1B3B2C] text-[15px] leading-[1.6] font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>
                   {review.text}
                 </p>
               </div>
 
-              <div className="mt-12 pt-6 border-t border-[#2E1C3B]/20 flex justify-between items-end">
-                <span className="joyrush-font text-[#2E1C3B] text-[18px] md:text-[20px] font-medium">
+              <div className="mt-12 pt-6 border-t border-[#1B3B2C]/20 flex justify-between items-end">
+                <span className="joyrush-font text-[#1B3B2C] text-[18px] md:text-[20px] font-medium">
                   {review.name}
                 </span>
                 

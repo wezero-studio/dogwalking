@@ -24,10 +24,10 @@ const ContactSection = ({ bgColor }: ContactSectionProps) => {
       {/* ── Background Image & Gradient ── */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/contact-bg.jpg"
+          src="https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=1962&auto=format&fit=crop"
           alt="Happy dog outdoors"
           fill
-          className="object-cover object-center"
+          className="object-cover object-[center_34%]"
           sizes="100vw"
         />
         {/* Subtle gradient to ensure the white text pops against the background */}
@@ -54,16 +54,20 @@ const ContactSection = ({ bgColor }: ContactSectionProps) => {
         >
           {/* Main Button */}
           <a 
-            href="#" 
-            className="joyrush-font flex items-center justify-center bg-white text-[#2E1C3B] px-8 md:px-12 py-4 rounded-full text-[16px] md:text-[18px] font-bold tracking-[0.05em] uppercase hover:scale-105 transition-transform shadow-lg"
+            href="https://cal.eu/12345678910/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="joyrush-font flex items-center justify-center bg-white text-[#1B3B2C] px-8 md:px-12 py-4 rounded-full text-[16px] md:text-[18px] font-bold tracking-[0.05em] uppercase hover:scale-105 transition-transform shadow-lg"
           >
             Get Started
           </a>
 
           {/* Arrow Button */}
           <a 
-            href="#" 
-            className="flex items-center justify-center bg-white text-[#2E1C3B] w-[54px] h-[54px] md:w-[60px] md:h-[60px] rounded-full hover:scale-110 transition-transform shadow-lg group"
+            href="https://cal.eu/12345678910/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center bg-white text-[#1B3B2C] w-[54px] h-[54px] md:w-[60px] md:h-[60px] rounded-full hover:scale-110 transition-transform shadow-lg group"
             aria-label="Get Started Arrow"
           >
             <svg 

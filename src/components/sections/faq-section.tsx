@@ -11,10 +11,7 @@ const faqs = [
     question: "What makes Our Company different?",
     answer: "We offer a truly bespoke approach to dog care, with services tailored to each dog's individual needs, routine, and personality. We ensure plenty of one-to-one attention, companionship, and care."
   },
-  {
-    question: "Are you insured and qualified?",
-    answer: "Yes. We are fully insured, DBS checked, and canine first aid trained, giving you complete confidence that your dog is in safe and experienced hands."
-  },
+
   {
     question: "How do you decide if a dog is suitable for group walks?",
     answer: "Every dog is assessed individually. Temperament, age, energy levels, recall, and compatibility with other dogs are all considered to ensure a safe and enjoyable experience for everyone."
@@ -33,10 +30,10 @@ const FaqSection = () => {
       {/* ── Left Side: Image ── */}
       <div className="w-full lg:w-1/2 relative min-h-[50vh] lg:min-h-screen">
         <Image
-          src="/faq-bg.jpg"
+          src="https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=2070&auto=format&fit=crop"
           alt="Happy dog on a walk"
           fill
-          className="object-cover object-center"
+          className="object-cover object-[75%_center]"
           sizes="(max-width: 1024px) 100vw, 50vw"
         />
       </div>
@@ -48,7 +45,7 @@ const FaqSection = () => {
           as="h2"
           trigger="inView"
           text="FAQs"
-          className="text-[#2E1C3B] text-[60px] md:text-[80px] lg:text-[100px] leading-[0.8] mb-16 uppercase tracking-tight"
+          className="text-[#1B3B2C] text-[60px] md:text-[80px] lg:text-[100px] leading-[0.8] mb-16 uppercase tracking-tight"
           style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
         />
 
@@ -67,14 +64,14 @@ const FaqSection = () => {
                 trigger="inView"
                 text={faq.question}
                 delay={i * 0.1}
-                className="text-[24px] md:text-[28px] font-medium pb-4 border-b-[3px] border-[#2E1C3B]/20 mb-4 transition-colors group-hover:border-[#2E1C3B]/60 leading-tight"
+                className="text-[24px] md:text-[28px] font-medium pb-4 border-b-[3px] border-[#1B3B2C]/20 mb-4 transition-colors group-hover:border-[#1B3B2C]/60 leading-tight"
                 style={{ color: qColors[i % qColors.length], fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
               />
               <RevealText
                 as="p"
                 trigger="inView"
                 delay={i * 0.1 + 0.1}
-                className="text-[#2E1C3B]/90 text-[16px] md:text-[17px] leading-[1.6] font-medium pr-6"
+                className="text-[#1B3B2C]/90 text-[16px] md:text-[17px] leading-[1.6] font-medium pr-6"
                 style={{ fontFamily: "'Inter', sans-serif" }}
               >
                 {faq.answer}

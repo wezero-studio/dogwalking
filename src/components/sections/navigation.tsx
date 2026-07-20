@@ -12,31 +12,62 @@ const NAV_LINKS = [
 ];
 
 const Navigation = () => {
-  const [isVisible, setIsVisible] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isOverDark, setIsOverDark] = useState(true);
+  const [ctaVisible, setCtaVisible] = useState(true);
 
   useEffect(() => {
     let prevScrollY = window.scrollY;
+    let tick = false;
+
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const nextVisible = !(currentScrollY > prevScrollY && currentScrollY > 100 && !isMenuOpen);
-      prevScrollY = currentScrollY;
-      setIsVisible(nextVisible);
+      if (!tick) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          setScrolled(currentScrollY > 80);
+
+          // CTA hides logic removed as per request
+          prevScrollY = currentScrollY;
+
+          // Check what section is under the navbar. Uses elementsFromPoint (plural) rather
+          // than elementFromPoint: the nav itself is pointer-events-auto and sits on top at
+          // this exact point, so a single-element hit-test just returns a nav link with no
+          // enclosing <section>, and isOverDark silently never updates again. The full stack
+          // lets us walk past the nav to the actual page content underneath it.
+          const stack = document.elementsFromPoint(window.innerWidth / 2, 30);
+          const section = stack.map((node) => node.closest('section')).find(Boolean);
+          if (section) {
+            const id = section.getAttribute('id');
+            // White nav text over hero/stats/faqs/contact (photo backgrounds dark enough to
+            // need it). Everything else — pricing, how-it-works, testimonials, what-we-do —
+            // is light enough that black reads better.
+            setIsOverDark(id === 'hero' || id === 'stats' || id === 'faqs' || id === 'contact');
+          }
+
+          tick = false;
+        });
+        tick = true;
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMenuOpen]);
 
-  return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-[1000] transition-transform duration-300 pointer-events-none ${
-        isVisible ? "translate-y-0" : "-translate-y-full"
-      }`}
-    >
-      <div className="w-full px-6 md:px-16 pt-6 pointer-events-auto">
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center">
+  const useWhiteText = !scrolled || isOverDark;
 
-          {/* Left: reserved empty space for a future logo */}
+  return (
+    <>
+    <header className="fixed top-0 left-0 right-0 z-[1000] pointer-events-none">
+      <div className="w-full px-6 md:px-16 pt-6 pointer-events-auto">
+        <div
+          className={`grid grid-cols-[1fr_auto_1fr] items-center transition-all duration-300 ${
+            !scrolled ? "py-0" : "py-2"
+          }`}
+        >
+
+          {/* Left: reserved empty space */}
           <div className="hidden lg:block" />
 
           {/* Nav links — centered */}
@@ -45,24 +76,29 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-[14px] font-semibold text-[#2E1C3B] hover:opacity-60 transition-opacity tracking-wide whitespace-nowrap"
+                className={`text-[14px] font-semibold transition-opacity tracking-wide whitespace-nowrap hover:opacity-60 ${
+                  useWhiteText ? "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]" : "text-black"
+                }`}
               >
                 {item.name}
               </a>
             ))}
           </nav>
 
+          {/* Desktop right CTA */}
           <a
-            href="#contact"
-            className="hidden lg:flex items-center gap-2 px-5 h-11 bg-[#2E1C3B] text-[#F9F4EB] rounded-xl text-[14px] font-bold uppercase tracking-wide hover:opacity-85 transition-opacity justify-self-end"
-            style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
+            href="https://cal.eu/12345678910/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:flex items-center gap-2 px-6 h-11 rounded-full text-[14px] font-bold uppercase tracking-wide hover:scale-105 transition-transform justify-self-end bg-[#1B3B2C] text-white"
+            style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
           >
             Schedule a Walk
           </a>
 
-          {/* Mobile: hamburger only */}
+          {/* Mobile: hamburger */}
           <button
-            className="lg:hidden col-start-3 justify-self-end text-[#1a1208]"
+            className={`lg:hidden col-start-3 justify-self-end ${useWhiteText ? "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]" : "text-[#1a1208]"}`}
             onClick={() => setIsMenuOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -83,24 +119,17 @@ const Navigation = () => {
                 key={item.name}
                 href={item.href}
                 className="text-[18px] font-bold text-[#1a1208]"
-                style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
+                style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </a>
             ))}
-            <a
-              href="#contact"
-              className="mt-2 flex items-center justify-center gap-2 px-5 h-12 bg-[#1a1208] text-white rounded-xl text-[15px] font-bold uppercase tracking-wide"
-              style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Schedule a Walk
-            </a>
           </div>
         )}
       </div>
     </header>
+  </>
   );
 };
 

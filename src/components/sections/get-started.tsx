@@ -106,47 +106,29 @@ const GetStarted = () => {
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
 
   return (
-    <section id="how-it-works" className="relative bg-[#2E1C3B]">
-      {/* Top wave divider — filled with OurReach's blue (the section right before this one),
-          same technique as the wave at the top of OurReach itself */}
-      <div className="absolute top-[-1px] left-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="relative block w-[calc(100%+1.3px)] h-[120px]"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            className="fill-[#F9F4EB]"
-          />
-        </svg>
-      </div>
+    <section id="how-it-works" className="relative bg-[#FFF4B3]">
 
       {/* ── Desktop: pinned rising-cards cascade ── */}
       <div ref={sectionRef} className="hidden lg:block relative" style={{ height: `calc(100vh + ${EXTRA_PX}px)` }}>
         <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
-          <div
-            className="absolute inset-0 opacity-10 pointer-events-none"
-            style={{ backgroundImage: "radial-gradient(#1a1208 2px, transparent 2px)", backgroundSize: "40px 40px" }}
-          />
+
 
           {/* Pinned center heading */}
           <div className="relative z-20 text-center px-6 pointer-events-none">
             <div
-              className="flex items-center justify-center gap-3 text-[13px] font-bold tracking-[0.15em] uppercase text-white/80 mb-6"
+              className="flex items-center justify-center gap-3 text-[13px] font-bold tracking-[0.15em] uppercase text-[#1a1208]/70 mb-6"
               style={{ fontFamily: "'Inter', sans-serif" }}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-white/80" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#1a1208]/70" />
               How It Works
             </div>
             <AnimatedHeading
               as="h2"
               trigger="inView"
               lines={[
-                { text: "Walkies Made", className: "text-white" },
-                { text: "Perfectly", style: { color: "#C8F560", WebkitTextStroke: "2px #C8F560" } },
-                { text: "Simple", style: { color: "transparent", WebkitTextStroke: "3px #FFFFFF" } },
+                { text: "Walkies Made", className: "text-[#1a1208]" },
+                { text: "Perfectly", style: { color: "#FF5722", WebkitTextStroke: "2px #FF5722" } },
+                { text: "Simple", style: { color: "transparent", WebkitTextStroke: "3px #1a1208" } },
               ]}
               className="uppercase leading-[0.9] m-0"
               style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700, fontSize: "clamp(56px, 9vw, 132px)" }}
@@ -155,7 +137,7 @@ const GetStarted = () => {
               as="p"
               trigger="inView"
               delay={0.2}
-              className="mt-6 text-[16px] md:text-[18px] text-white/85 max-w-[480px] mx-auto leading-relaxed"
+              className="mt-6 text-[16px] md:text-[18px] text-[#1a1208]/75 max-w-[480px] mx-auto leading-relaxed"
               style={{ fontFamily: "'Inter', sans-serif" }}
             >
               From your first booking to your dog&apos;s happiest walk yet — here&apos;s exactly how it works.
@@ -170,17 +152,17 @@ const GetStarted = () => {
 
       {/* ── Mobile / tablet: simple static stack, no scroll-jacking ── */}
       <div className="lg:hidden px-6 py-20 flex flex-col items-center text-center">
-        <div className="flex items-center justify-center gap-3 text-[13px] font-bold tracking-[0.15em] uppercase text-white/80 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
-          <span className="w-1.5 h-1.5 rounded-full bg-white/80" />
+        <div className="flex items-center justify-center gap-3 text-[13px] font-bold tracking-[0.15em] uppercase text-[#1a1208]/70 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#1a1208]/70" />
           How It Works
         </div>
         <AnimatedHeading
           as="h2"
           trigger="inView"
           lines={[
-            { text: "Walkies Made", className: "text-white" },
-            { text: "Perfectly", style: { color: "#C8F560", WebkitTextStroke: "2px #C8F560" } },
-            { text: "Simple", style: { color: "transparent", WebkitTextStroke: "2px #FFFFFF" } },
+            { text: "Walkies Made", className: "text-[#1a1208]" },
+            { text: "Perfectly", style: { color: "#FF5722", WebkitTextStroke: "2px #FF5722" } },
+            { text: "Simple", style: { color: "transparent", WebkitTextStroke: "2px #1a1208" } },
           ]}
           className="uppercase leading-[0.9] m-0 text-[56px] sm:text-[76px]"
           style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
@@ -189,7 +171,7 @@ const GetStarted = () => {
           as="p"
           trigger="inView"
           delay={0.2}
-          className="mt-6 text-[16px] text-white/85 max-w-[440px] leading-relaxed"
+          className="mt-6 text-[16px] text-[#1a1208]/75 max-w-[440px] leading-relaxed"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >
           From your first booking to your dog&apos;s happiest walk yet — here&apos;s exactly how it works.

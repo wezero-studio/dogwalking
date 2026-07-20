@@ -25,7 +25,7 @@ const PawImage = ({ src, className = "", breatheDelay = 0, clipId = "pawClip1", 
       </defs>
       
       {/* Group holding the stroke properties for toes and pad */}
-      <g stroke="#2E1C3B" strokeWidth="3" strokeLinejoin="round">
+      <g stroke="#1B3B2C" strokeWidth="3" strokeLinejoin="round">
         {/* Toes: solid lighter color so they contrast with the dark border/shadow */}
         <ellipse cx="50" cy="16" rx="11" ry="14" fill={toeColor} />
         <ellipse cx="23" cy="32" rx="9" ry="12" fill={toeColor} transform="rotate(-20 23 32)" />
@@ -73,7 +73,7 @@ const ProblemWeSolve = ({ bgColor }: ProblemWeSolveProps) => {
           {/* Left Paw Image */}
           <div className="lg:w-[25%] flex justify-center lg:justify-start flex-shrink-0">
             <PawImage 
-              src="/paw-left-internet.jpg" 
+              src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=2069&auto=format&fit=crop" 
               className="-rotate-6" 
               clipId="clipLeft"
               toeColor="#FFB085"
@@ -86,23 +86,23 @@ const ProblemWeSolve = ({ bgColor }: ProblemWeSolveProps) => {
               as="h2"
               trigger="inView"
               lines={["CLEAN, FUN, FEEL GOOD WALKS", "THAT ENHANCE JOYFUL MOMENTS"]}
-              className="text-[#2E1C3B] text-[32px] sm:text-[40px] lg:text-[48px] xl:text-[56px] leading-[1.1] tracking-tight uppercase"
+              className="text-[#1B3B2C] text-[32px] sm:text-[40px] lg:text-[48px] xl:text-[56px] leading-[1.1] tracking-tight uppercase"
               style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
             />
             <RevealText
               as="p"
               trigger="inView"
               delay={0.2}
-              className="joyrush-font mt-8 text-[#2E1C3B] text-[18px] sm:text-[22px] leading-relaxed max-w-[600px] opacity-90 font-medium"
+              className="joyrush-font mt-8 text-[#1B3B2C] text-[18px] sm:text-[22px] leading-relaxed max-w-[600px] opacity-90 font-medium"
             >
-              Too busy to give them a long walk? Is your dog staring at the leash? We’ve got you covered with our trusted daily adventures.
+              Too busy to give them a long walk? Is your dog staring at the leash? Too hot, cold or rainy outside? We&apos;ve got you covered.
             </RevealText>
           </div>
 
           {/* Right Paw Image — Moved up using negative margin on desktop */}
           <div className="lg:w-[25%] flex justify-center lg:justify-end flex-shrink-0 lg:-mt-48">
             <PawImage 
-              src="/paw-pic-2.png" 
+              src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?q=80&w=2070&auto=format&fit=crop" 
               className="rotate-12" 
               breatheDelay={1.5} 
               clipId="clipRight"

@@ -43,15 +43,19 @@ const HeroSection: React.FC = () => {
             className="flex items-center gap-4 mt-10"
           >
             <a
-              href="#contact"
-              className="flex items-center justify-center bg-white text-[#2E1C3B] px-10 py-4 rounded-full text-[15px] font-bold tracking-[0.05em] uppercase hover:scale-105 transition-transform"
+              href="https://cal.eu/12345678910/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center bg-white text-[#1B3B2C] px-10 py-4 rounded-full text-[15px] font-bold tracking-[0.05em] uppercase hover:scale-105 transition-transform"
               style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
             >
               Get Started
             </a>
             <a
-              href="#contact"
-              className="flex items-center justify-center bg-white text-[#2E1C3B] w-[54px] h-[54px] rounded-full hover:scale-110 transition-transform group"
+              href="https://cal.eu/12345678910/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center bg-white text-[#1B3B2C] w-[54px] h-[54px] rounded-full hover:scale-110 transition-transform group"
               aria-label="Get Started"
             >
               <svg className="w-6 h-6 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
