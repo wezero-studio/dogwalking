@@ -89,9 +89,7 @@ const Navigation = () => {
 
           {/* Desktop right CTA */}
           <a
-            href="https://cal.eu/12345678910/30min"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#booking"
             className="hidden lg:flex items-center gap-2 px-6 h-11 rounded-full text-[14px] font-bold uppercase tracking-wide hover:scale-105 transition-transform justify-self-end bg-[#1B3B2C] text-white"
             style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
           >
@@ -130,9 +128,7 @@ const Navigation = () => {
             {/* Desktop has this as a standing pill in the header; mobile only had the
                 hamburger's link list with no way to book at all until this was added. */}
             <a
-              href="https://cal.eu/12345678910/30min"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#booking"
               className="flex items-center justify-center gap-2 mt-2 px-6 h-12 rounded-full text-[15px] font-bold uppercase tracking-wide bg-[#1B3B2C] text-white"
               style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
               onClick={() => setIsMenuOpen(false)}

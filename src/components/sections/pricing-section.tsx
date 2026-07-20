@@ -319,9 +319,7 @@ const PricingSection = () => {
 
               {/* CTA */}
               <motion.a
-                href="https://cal.eu/12345678910/30min"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#booking"
                 layout
                 className="w-full bg-[#2E1C3B] text-white py-4 rounded-sm flex items-center justify-center text-[15px] font-bold tracking-wide hover:opacity-90 transition-opacity mt-auto"
                 style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}

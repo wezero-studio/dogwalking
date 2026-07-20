@@ -54,9 +54,7 @@ const ContactSection = ({ bgColor }: ContactSectionProps) => {
         >
           {/* Main Button */}
           <a 
-            href="https://cal.eu/12345678910/30min"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#booking"
             className="joyrush-font flex items-center justify-center bg-white text-[#1B3B2C] px-8 md:px-12 py-4 rounded-full text-[16px] md:text-[18px] font-bold tracking-[0.05em] uppercase hover:scale-105 transition-transform shadow-lg"
           >
             Get Started
@@ -64,9 +62,7 @@ const ContactSection = ({ bgColor }: ContactSectionProps) => {
 
           {/* Arrow Button */}
           <a 
-            href="https://cal.eu/12345678910/30min"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#booking"
             className="flex items-center justify-center bg-white text-[#1B3B2C] w-[54px] h-[54px] md:w-[60px] md:h-[60px] rounded-full hover:scale-110 transition-transform shadow-lg group"
             aria-label="Get Started Arrow"
           >

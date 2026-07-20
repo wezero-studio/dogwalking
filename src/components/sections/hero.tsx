@@ -53,18 +53,14 @@ const HeroSection: React.FC = () => {
             className="flex items-center gap-4 mt-10"
           >
             <a
-              href="https://cal.eu/12345678910/30min"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#booking"
               className="flex items-center justify-center bg-white text-[#1B3B2C] px-10 py-4 rounded-full text-[15px] font-bold tracking-[0.05em] uppercase hover:scale-105 transition-transform"
               style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
             >
               Get Started
             </a>
             <a
-              href="https://cal.eu/12345678910/30min"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#booking"
               className="flex items-center justify-center bg-white text-[#1B3B2C] w-[54px] h-[54px] rounded-full hover:scale-110 transition-transform group"
               aria-label="Get Started"
             >
