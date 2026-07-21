@@ -10,12 +10,11 @@ const SITE_URL = "https://dogwalking.pages.dev";
 const SITE_NAME = "Heyford Walks";
 const SITE_DESCRIPTION =
   "Professional, trusted dog walking across London — daily walks, GPS-tracked routes, and photo updates after every visit.";
-// Dedicated share-card photo (distinct from the hero's own image), cropped to
-// the standard 1200x630 OG dimensions, since there's no branded share image yet.
-// "faces" detection doesn't reliably find dog faces (it cropped toward the dog's
-// chest instead), so using an explicit focal point (upper-left, where the dog's
-// face actually is in the source photo) instead of an edge keyword.
-const OG_IMAGE = "https://images.unsplash.com/photo-1544568100-847a948585b9?w=1200&h=630&fit=crop&crop=focalpoint&fp-x=0.3&fp-y=0.15&q=80";
+// Square share-card photo — a landscape 1200x630 crop kept cutting the dog's
+// face off (edge/face-detection crop params weren't reliable for a dog photo);
+// this one's naturally centered, so a plain square crop just works.
+const OG_IMAGE = "https://images.unsplash.com/photo-1544568100-847a948585b9?w=1200&h=1200&fit=crop&q=80";
+const OG_IMAGE_SIZE = 1200;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -51,7 +50,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
+    images: [{ url: OG_IMAGE, width: OG_IMAGE_SIZE, height: OG_IMAGE_SIZE, alt: SITE_NAME }],
   },
   twitter: {
     card: "summary_large_image",
