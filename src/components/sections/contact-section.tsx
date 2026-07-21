@@ -13,14 +13,6 @@ interface ContactSectionProps {
 const ContactSection = ({ bgColor }: ContactSectionProps) => {
   return (
     <section id="contact" className="relative w-full min-h-screen flex items-start pt-32 md:pt-40 overflow-hidden">
-      {/* Inject Google Font for the Joyrush style */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
-        .joyrush-font {
-          font-family: 'Fraunces', serif;
-        }
-      `}} />
-
       {/* ── Background Image & Gradient ── */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -53,9 +45,10 @@ const ContactSection = ({ bgColor }: ContactSectionProps) => {
           className="flex items-center gap-4 mt-8 md:mt-10"
         >
           {/* Main Button */}
-          <a 
+          <a
             href="#booking"
-            className="joyrush-font flex items-center justify-center bg-white text-[#1B3B2C] px-8 md:px-12 py-4 rounded-full text-[16px] md:text-[18px] font-bold tracking-[0.05em] uppercase hover:scale-105 transition-transform shadow-lg"
+            className="flex items-center justify-center bg-white text-[#1B3B2C] px-8 md:px-12 py-4 rounded-full text-[16px] md:text-[18px] font-bold tracking-[0.05em] uppercase hover:scale-105 transition-transform shadow-lg"
+            style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
           >
             Get Started
           </a>

@@ -50,14 +50,6 @@ const Testimonials = ({ bgColor }: { bgColor?: MotionValue<string> }) => {
 
   return (
     <section id="testimonials" className="relative w-full pt-32 pb-32 bg-[#F9F4EB] overflow-hidden">
-      {/* Inject Google Font for the Joyrush style */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
-        .joyrush-font {
-          font-family: 'Fraunces', serif;
-        }
-      `}} />
-
       <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col items-center">
         
         {/* Heading */}
@@ -118,7 +110,10 @@ const Testimonials = ({ bgColor }: { bgColor?: MotionValue<string> }) => {
               </div>
 
               <div className="mt-12 pt-6 border-t border-[#1B3B2C]/20 flex justify-between items-end">
-                <span className="joyrush-font text-[#1B3B2C] text-[18px] md:text-[20px] font-medium">
+                <span
+                  className="text-[#1B3B2C] text-[18px] md:text-[20px] font-medium"
+                  style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
+                >
                   {review.name}
                 </span>
                 

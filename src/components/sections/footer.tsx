@@ -56,10 +56,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom copyright row */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 gap-4">
-          <p className="text-[#1B3B2C]/80 text-[13px] md:text-[14px] font-medium tracking-wide">
-            Designed and developed by: Heyford Walks Team
-          </p>
+        <div className="flex justify-center items-center pt-8">
           <p className="text-[#1B3B2C]/80 text-[13px] md:text-[14px] font-medium tracking-wide">
             © copyright 2026 Heyford Walks. All rights Reserved
           </p>

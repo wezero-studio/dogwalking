@@ -22,7 +22,7 @@ const faqs = [
   }
 ];
 
-const qColors = ["#FF5722", "#8B5CF6", "#10B981", "#3B82F6"]; // Orange, Purple, Green, Blue
+const qColors = ["#FF5722", "#1B3B2C", "#2E1C3B"]; // orange / green / dark purple — the site's palette
 
 const FaqSection = () => {
   return (

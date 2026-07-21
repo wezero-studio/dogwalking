@@ -75,7 +75,7 @@ const StepCard = ({
 
   return (
     <motion.div
-      className="absolute rounded-[20px] overflow-hidden border-[3px] border-[#C8F560] shadow-[0_16px_48px_rgba(0,0,0,0.45)] z-10"
+      className="absolute rounded-[20px] overflow-hidden border-[3px] border-[#2E1C3B] shadow-[0_16px_48px_rgba(0,0,0,0.45)] z-10"
       style={{ left: `${step.leftVw}vw`, top, width: CARD_W, height: CARD_H, rotate: step.rotate }}
     >
       <img src={step.img} alt={step.label} className="absolute inset-0 w-full h-full object-cover" />
@@ -131,10 +131,10 @@ const GetStarted = () => {
           {/* Pinned center heading */}
           <div className="relative z-20 text-center px-6 pointer-events-none">
             <div
-              className="flex items-center justify-center gap-3 text-[13px] font-bold tracking-[0.15em] uppercase text-[#1a1208]/70 mb-6"
+              className="flex items-center justify-center gap-3 text-[13px] font-bold tracking-[0.15em] uppercase text-[#1a1208]/80 mb-6"
               style={{ fontFamily: "'Inter', sans-serif" }}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#1a1208]/70" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#1a1208]/80" />
               How It Works
             </div>
             <AnimatedHeading
@@ -167,8 +167,8 @@ const GetStarted = () => {
 
       {/* ── Mobile / tablet: simple static stack, no scroll-jacking ── */}
       <div className="lg:hidden px-6 py-20 flex flex-col items-center text-center">
-        <div className="flex items-center justify-center gap-3 text-[13px] font-bold tracking-[0.15em] uppercase text-[#1a1208]/70 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#1a1208]/70" />
+        <div className="flex items-center justify-center gap-3 text-[13px] font-bold tracking-[0.15em] uppercase text-[#1a1208]/80 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#1a1208]/80" />
           How It Works
         </div>
         <AnimatedHeading
@@ -194,7 +194,7 @@ const GetStarted = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12 w-full max-w-[600px]">
           {STEPS.map((step, i) => (
-            <div key={step.label} className="relative rounded-[20px] overflow-hidden border-[3px] border-[#C8F560] shadow-[0_10px_30px_rgba(0,0,0,0.35)] aspect-[3/4]">
+            <div key={step.label} className="relative rounded-[20px] overflow-hidden border-[3px] border-[#2E1C3B] shadow-[0_10px_30px_rgba(0,0,0,0.35)] aspect-[3/4]">
               <img src={step.img} alt={step.label} className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4 text-left">

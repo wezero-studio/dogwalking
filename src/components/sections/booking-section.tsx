@@ -29,10 +29,10 @@ const BookingSection = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-2 bg-[#2E1C3B]/[0.07] border border-[#2E1C3B]/20 text-[#2E1C3B]/80 text-[12px] font-bold uppercase tracking-[0.14em] px-5 py-2 rounded-full mb-8"
+          className="inline-flex items-center gap-2 bg-[#FF5722] text-white text-[12px] font-bold uppercase tracking-[0.14em] px-5 py-2 rounded-full mb-8"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >
-          <span className="w-2 h-2 rounded-full bg-[#2E1C3B] inline-block animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-white inline-block animate-pulse" />
           Book Your Walk
         </motion.span>
 
@@ -50,7 +50,7 @@ const BookingSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-center text-[#2E1C3B]/70 text-[16px] md:text-[18px] mb-14 max-w-[520px] leading-relaxed"
+          className="text-center text-[#2E1C3B] text-[16px] md:text-[18px] mb-14 max-w-[520px] leading-relaxed"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >
           Pick a time that works for you and your pup. We can&apos;t wait to meet you both!

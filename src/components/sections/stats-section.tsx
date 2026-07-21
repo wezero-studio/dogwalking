@@ -8,14 +8,6 @@ import RevealText from "@/components/ui/reveal-text";
 const StatsSection = () => {
   return (
     <section id="stats" className="relative min-h-screen flex flex-col overflow-hidden">
-      {/* Inject Google Font for the Joyrush style if not already loaded globally */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
-        .joyrush-font {
-          font-family: 'Fraunces', serif;
-        }
-      `}} />
-
       {/* ── Background Image & Gradient Overlay ── */}
       <div className="absolute inset-0 z-0">
         {/* Desktop Image */}
@@ -51,8 +43,8 @@ const StatsSection = () => {
           as="p"
           trigger="inView"
           delay={0.2}
-          className="joyrush-font mt-8 text-white text-[18px] sm:text-[22px] max-w-[600px] leading-relaxed font-medium opacity-90"
-          style={{ textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}
+          className="mt-8 text-white text-[18px] sm:text-[22px] max-w-[600px] leading-relaxed font-medium opacity-90"
+          style={{ fontFamily: "'Inter', sans-serif", textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}
         >
           Our company is built with the sole purpose of helping you balance your work life with your dog&apos;s life.
         </RevealText>

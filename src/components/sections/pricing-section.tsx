@@ -123,7 +123,7 @@ const PricingSection = () => {
           as="h2"
           trigger="inView"
           lines={["CLEAR PRICING,", "NO SURPRISES."]}
-          className="text-[#2E1C3B] text-[38px] sm:text-[48px] md:text-[80px] lg:text-[100px] leading-[0.95] sm:leading-[0.88] uppercase mb-6 text-center tracking-tight"
+          className="text-[#2E1C3B] text-[38px] sm:text-[48px] md:text-[80px] lg:text-[100px] leading-[1.1] uppercase mb-6 text-center tracking-tight"
           style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
         />
 
@@ -194,7 +194,7 @@ const PricingSection = () => {
                     exit={{ opacity: 0, y: 8 }}
                     transition={{ duration: 0.18 }}
                     className="block text-[64px] md:text-[88px] leading-[0.9] tracking-tight"
-                    style={{ fontFamily: "'Luckiest Guy', sans-serif" }}
+                    style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
                   >
                     {fmt(totalPrice)}
                   </motion.span>

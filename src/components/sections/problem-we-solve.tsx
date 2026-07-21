@@ -59,14 +59,6 @@ interface ProblemWeSolveProps {
 const ProblemWeSolve = ({ bgColor }: ProblemWeSolveProps) => {
   return (
     <section id="what-we-do" className="relative pt-32 md:pt-48 pb-48 min-h-[120vh] flex items-center overflow-hidden bg-[#F9F4EB]">
-      {/* Inject Google Font for the Joyrush style (Fraunces is a great soft serif) */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
-        .joyrush-font {
-          font-family: 'Fraunces', serif;
-        }
-      `}} />
-
       <div className="relative z-20 w-full max-w-[1400px] mx-auto px-6 md:px-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-4 w-full">
           
@@ -93,7 +85,8 @@ const ProblemWeSolve = ({ bgColor }: ProblemWeSolveProps) => {
               as="p"
               trigger="inView"
               delay={0.2}
-              className="joyrush-font mt-8 text-[#1B3B2C] text-[18px] sm:text-[22px] leading-relaxed max-w-[600px] opacity-90 font-medium"
+              className="mt-8 text-[#1B3B2C] text-[18px] sm:text-[22px] leading-relaxed max-w-[600px] opacity-90 font-medium"
+              style={{ fontFamily: "'Inter', sans-serif" }}
             >
               Too busy to give them a long walk? Is your dog staring at the leash? Too hot, cold or rainy outside? We&apos;ve got you covered.
             </RevealText>
