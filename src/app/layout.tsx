@@ -10,10 +10,10 @@ const SITE_URL = "https://dogwalking.pages.dev";
 const SITE_NAME = "Heyford Walks";
 const SITE_DESCRIPTION =
   "Professional, trusted dog walking across London — daily walks, GPS-tracked routes, and photo updates after every visit.";
-// Square share-card photo — a landscape 1200x630 crop kept cutting the dog's
-// face off (edge/face-detection crop params weren't reliable for a dog photo);
-// this one's naturally centered, so a plain square crop just works.
-const OG_IMAGE = "https://images.unsplash.com/photo-1544568100-847a948585b9?w=1200&h=1200&fit=crop&q=80";
+// Square share-card photo. The dog sits right-of-center in the source photo, so a
+// plain center crop pushed its face off to one side — explicit focal point (checked
+// against the full source image) keeps the face centered in the square instead.
+const OG_IMAGE = "https://images.unsplash.com/photo-1544568100-847a948585b9?w=1200&h=1200&fit=crop&crop=focalpoint&fp-x=0.62&fp-y=0.4&q=80";
 const OG_IMAGE_SIZE = 1200;
 
 export const metadata: Metadata = {
