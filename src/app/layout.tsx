@@ -12,7 +12,7 @@ const SITE_DESCRIPTION =
   "Professional, trusted dog walking across London — daily walks, GPS-tracked routes, and photo updates after every visit.";
 // Dedicated share-card photo (distinct from the hero's own image), cropped to
 // the standard 1200x630 OG dimensions, since there's no branded share image yet.
-const OG_IMAGE = "https://images.unsplash.com/photo-1552053831-71594a27632d?w=1200&h=630&fit=crop&crop=faces,entropy&q=80";
+const OG_IMAGE = "https://images.unsplash.com/photo-1544568100-847a948585b9?w=1200&h=630&fit=crop&crop=faces,entropy&q=80";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
