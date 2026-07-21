@@ -32,8 +32,8 @@ export default function Home() {
           <ProblemWeSolve bgColor={heroToWalkColor} />
         </div>
         <StatsSection />
-        <PricingSection />
         <GetStarted />
+        <PricingSection />
         <FaqSection />
         <Testimonials bgColor={testimonialsToContactColor} />
         <BookingSection />
