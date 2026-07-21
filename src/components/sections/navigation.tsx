@@ -69,8 +69,16 @@ const Navigation = () => {
           }`}
         >
 
-          {/* Left: reserved empty space */}
-          <div className="hidden lg:block" />
+          {/* Left: brand name — same white/dark swap as the rest of the nav */}
+          <a
+            href="#hero"
+            className={`text-[18px] md:text-[22px] font-bold uppercase tracking-wide whitespace-nowrap justify-self-start transition-opacity hover:opacity-70 ${
+              useWhiteText ? "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]" : "text-[#1B3B2C]"
+            }`}
+            style={{ fontFamily: "'Shantell Sans', cursive", fontWeight: 700 }}
+          >
+            Heyford Walks
+          </a>
 
           {/* Nav links — centered */}
           <nav className="hidden lg:flex items-center gap-8 justify-self-center">

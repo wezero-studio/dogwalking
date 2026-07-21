@@ -7,7 +7,7 @@ import SmoothScroll from "@/components/smooth-scroll";
 import AppReadyProvider from "@/components/app-ready-provider";
 
 const SITE_URL = "https://dogwalking.pages.dev";
-const SITE_NAME = "London Dog Walkers";
+const SITE_NAME = "Heyford Walks";
 const SITE_DESCRIPTION =
   "Professional, trusted dog walking across London — daily walks, GPS-tracked routes, and photo updates after every visit.";
 // Reuses the hero's own photo, cropped to standard 1200x630 OG dimensions, since
