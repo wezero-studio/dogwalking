@@ -12,7 +12,10 @@ const SITE_DESCRIPTION =
   "Professional, trusted dog walking across London — daily walks, GPS-tracked routes, and photo updates after every visit.";
 // Dedicated share-card photo (distinct from the hero's own image), cropped to
 // the standard 1200x630 OG dimensions, since there's no branded share image yet.
-const OG_IMAGE = "https://images.unsplash.com/photo-1544568100-847a948585b9?w=1200&h=630&fit=crop&crop=faces,entropy&q=80";
+// "faces" detection doesn't reliably find dog faces (it cropped toward the dog's
+// chest instead), so using an explicit focal point (upper-left, where the dog's
+// face actually is in the source photo) instead of an edge keyword.
+const OG_IMAGE = "https://images.unsplash.com/photo-1544568100-847a948585b9?w=1200&h=630&fit=crop&crop=focalpoint&fp-x=0.3&fp-y=0.15&q=80";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
