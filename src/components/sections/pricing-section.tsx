@@ -3,6 +3,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedHeading from "@/components/ui/animated-heading";
+import { Switch } from "@/components/ui/switch";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import { Info } from "lucide-react";
 
 type Option = "15min" | "30min" | "1hr" | "2hr";
 
@@ -253,39 +256,27 @@ const PricingSection = () => {
                   {available15 && (
                     <div className="flex items-center justify-between px-4 py-3 border-b border-[#2E1C3B]/10 last:border-b-0">
                       <div>
-                        <p className="text-[14px] font-semibold text-[#2E1C3B]" style={{ fontFamily: "'Inter', sans-serif" }}>+15 minutes</p>
+                        <div className="flex items-center gap-1.5">
+                          <p className="text-[14px] font-semibold text-[#2E1C3B]" style={{ fontFamily: "'Inter', sans-serif" }}>+15 minutes</p>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <button className="text-[#2E1C3B]/40 hover:text-[#2E1C3B] transition-colors focus:outline-none cursor-help" aria-label="More information">
+                                <Info className="size-3.5" />
+                              </button>
+                            </TooltipTrigger>
+                            <TooltipContent className="bg-[#2E1C3B] text-[#F9F4EB] p-3 rounded-lg max-w-[240px] text-xs font-medium border border-white/10 shadow-xl">
+                              Only one 15-minute block can be added. If you want 30 minutes extra, please choose the &quot;+30 minutes&quot; option (if available) or select the next main plan tier.
+                            </TooltipContent>
+                          </Tooltip>
+                        </div>
                         <p className="text-[11px] text-[#2E1C3B]/45" style={{ fontFamily: "'Inter', sans-serif" }}>£2.50 per block</p>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <button
-                          onClick={() => setAddon15(0)}
-                          disabled={actualAddon15 === 0}
-                          className="w-8 h-8 rounded-full border border-[#2E1C3B]/25 flex items-center justify-center text-[#2E1C3B] font-bold text-[20px] leading-none hover:bg-[#2E1C3B] hover:text-white hover:border-transparent transition-all disabled:opacity-25 disabled:cursor-not-allowed"
-                          aria-label="Remove 15 min block"
-                        >
-                          −
-                        </button>
-                        <AnimatePresence mode="wait">
-                          <motion.span
-                            key={actualAddon15}
-                            initial={{ scale: 1.3, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                            transition={{ duration: 0.15 }}
-                            className="w-5 text-center text-[16px] font-bold"
-                            style={{ fontFamily: "'Shantell Sans', cursive" }}
-                          >
-                            {actualAddon15}
-                          </motion.span>
-                        </AnimatePresence>
-                        <button
-                          onClick={() => setAddon15(1)}
-                          disabled={actualAddon15 >= 1}
-                          className="w-8 h-8 rounded-full border border-[#2E1C3B]/25 flex items-center justify-center text-[#2E1C3B] font-bold text-[20px] leading-none hover:bg-[#2E1C3B] hover:text-white hover:border-transparent transition-all disabled:opacity-25 disabled:cursor-not-allowed"
-                          aria-label="Add 15 min block"
-                        >
-                          +
-                        </button>
+                      <div className="flex items-center">
+                        <Switch
+                          checked={actualAddon15 === 1}
+                          onCheckedChange={(checked) => setAddon15(checked ? 1 : 0)}
+                          className="data-[state=checked]:bg-[#FF5722] data-[state=unchecked]:bg-[#2E1C3B]/10"
+                        />
                       </div>
                     </div>
                   )}
@@ -293,39 +284,27 @@ const PricingSection = () => {
                   {available30 && (
                     <div className="flex items-center justify-between px-4 py-3 border-b border-[#2E1C3B]/10 last:border-b-0">
                       <div>
-                        <p className="text-[14px] font-semibold text-[#2E1C3B]" style={{ fontFamily: "'Inter', sans-serif" }}>+30 minutes</p>
+                        <div className="flex items-center gap-1.5">
+                          <p className="text-[14px] font-semibold text-[#2E1C3B]" style={{ fontFamily: "'Inter', sans-serif" }}>+30 minutes</p>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <button className="text-[#2E1C3B]/40 hover:text-[#2E1C3B] transition-colors focus:outline-none cursor-help" aria-label="More information">
+                                <Info className="size-3.5" />
+                              </button>
+                            </TooltipTrigger>
+                            <TooltipContent className="bg-[#2E1C3B] text-[#F9F4EB] p-3 rounded-lg max-w-[240px] text-xs font-medium border border-white/10 shadow-xl">
+                              Only one 30-minute block can be added. If you need more time, please upgrade to the next main plan tier.
+                            </TooltipContent>
+                          </Tooltip>
+                        </div>
                         <p className="text-[11px] text-[#2E1C3B]/45" style={{ fontFamily: "'Inter', sans-serif" }}>£4.50 per block</p>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <button
-                          onClick={() => setAddon30(0)}
-                          disabled={actualAddon30 === 0}
-                          className="w-8 h-8 rounded-full border border-[#2E1C3B]/25 flex items-center justify-center text-[#2E1C3B] font-bold text-[20px] leading-none hover:bg-[#2E1C3B] hover:text-white hover:border-transparent transition-all disabled:opacity-25 disabled:cursor-not-allowed"
-                          aria-label="Remove 30 min block"
-                        >
-                          −
-                        </button>
-                        <AnimatePresence mode="wait">
-                          <motion.span
-                            key={actualAddon30}
-                            initial={{ scale: 1.3, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                            transition={{ duration: 0.15 }}
-                            className="w-5 text-center text-[16px] font-bold"
-                            style={{ fontFamily: "'Shantell Sans', cursive" }}
-                          >
-                            {actualAddon30}
-                          </motion.span>
-                        </AnimatePresence>
-                        <button
-                          onClick={() => setAddon30(1)}
-                          disabled={actualAddon30 >= 1}
-                          className="w-8 h-8 rounded-full border border-[#2E1C3B]/25 flex items-center justify-center text-[#2E1C3B] font-bold text-[20px] leading-none hover:bg-[#2E1C3B] hover:text-white hover:border-transparent transition-all disabled:opacity-25 disabled:cursor-not-allowed"
-                          aria-label="Add 30 min block"
-                        >
-                          +
-                        </button>
+                      <div className="flex items-center">
+                        <Switch
+                          checked={actualAddon30 === 1}
+                          onCheckedChange={(checked) => setAddon30(checked ? 1 : 0)}
+                          className="data-[state=checked]:bg-[#FF5722] data-[state=unchecked]:bg-[#2E1C3B]/10"
+                        />
                       </div>
                     </div>
                   )}
